@@ -97,7 +97,7 @@ export function getWhatsAppLink(
 export const contact = {
   whatsapp,
   // TODO(content): confirm WhatsApp operating hours (copy lives in messages: contact.hours.value).
-  // TODO(content): real email, phone and social URLs.
+  // TODO(content): real Instagram and LinkedIn URLs.
   email: 'otajnb@gmail.com',
   phone: { href: 'tel:+628159495520', display: '+62 815 949 5520' },
   social: {

@@ -35,7 +35,7 @@ export function LanguageToggle({ className }: { className?: string }) {
             className={cn(
               'px-1 py-2 tracking-[0.12em] uppercase transition-opacity',
               l === locale
-                ? 'underline decoration-2 underline-offset-[6px]'
+                ? 'underline decoration-red decoration-2 underline-offset-[6px]'
                 : 'opacity-60 hover:opacity-100',
             )}
           >
