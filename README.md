@@ -271,7 +271,7 @@ Search the code for `TODO` to find each one.
 - [ ] Total rooms now compute to 393 (shown as "300+", including BNR); live rooms are shown separately
 - [ ] Service scope to be confirmed by management (`data/services.ts`)
 - [ ] WhatsApp operating hours (`contact.hours.value` in messages)
-- [ ] Real photography (every image in `public/images` is still a labelled placeholder)
+- [ ] Real photography (only `team/hie-yenny-kristina.jpg` is real so far; the rest are labelled placeholders)
 - [ ] Instagram/LinkedIn URLs in `config/contact.ts`
 - [ ] Earnest Surya (CTO): confirm bio
 
