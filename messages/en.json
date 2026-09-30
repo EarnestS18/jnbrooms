@@ -149,7 +149,7 @@
     "story": {
       "label": "About J&B Rooms",
       "headline": "From 9 rooms to a multi-location portfolio",
-      "p1": "J&B Rooms was founded in 2019 by Hie Yenny Kristina. It started with a single property: J&B Rooms Pramuka, which opened with 9 rooms.",
+      "p1": "J&B Rooms was founded in 2019 by Yenny Kristina. It started with a single property: J&B Rooms Pramuka, which opened with 9 rooms.",
       "p2": "Since then, J&B Rooms has grown into a multi-location hotel management portfolio across Jakarta, Greater Jakarta and beyond — partnering with property owners to operate hotels that perform for owners, guests and teams alike.",
       "imageAlt": "J&B Rooms Pramuka, the company’s first property"
     },
@@ -212,8 +212,7 @@
     },
     "timeline": {
       "label": "Development Timeline",
-      "headline": "Year by year",
-      "hint": "Drag or scroll to explore"
+      "headline": "Year by year"
     },
     "upcoming": {
       "label": "Current & Upcoming Projects",

@@ -8,4 +8,4 @@ export const siteUrl = (
 
 export const siteName = 'J&B Rooms';
 export const foundingYear = 2019;
-export const founder = 'Hie Yenny Kristina';
+export const founder = 'Yenny Kristina';

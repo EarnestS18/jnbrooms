@@ -29,7 +29,7 @@ const services = [
   'ota-management',
   'people-management',
 ];
-const team = ['hie-yenny-kristina', 'aidil-putra-ardi', 'earnest-surya'];
+const team = ['yenny-kristina', 'aidil-putra-ardi', 'earnest-surya'];
 
 function rng(seed) {
   let h = 2166136261;

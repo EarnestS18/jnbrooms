@@ -6,14 +6,14 @@ import type { TeamMember } from '@/types/content';
  */
 export const team: TeamMember[] = [
   {
-    slug: 'hie-yenny-kristina',
-    name: 'Hie Yenny Kristina',
+    slug: 'yenny-kristina',
+    name: 'Yenny Kristina',
     role: { en: 'CEO / Founder', id: 'CEO / Pendiri' },
     bio: {
       en: 'Founded J&B Rooms in 2019 and leads the company’s growth as a multi-location hotel management partner.',
       id: 'Mendirikan J&B Rooms pada tahun 2019 dan memimpin pertumbuhan perusahaan sebagai mitra manajemen hotel multi-lokasi.',
     },
-    image: '/images/team/hie-yenny-kristina.jpg',
+    image: '/images/team/yenny-kristina.jpg',
   },
   {
     slug: 'aidil-putra-ardi',
