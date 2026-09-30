@@ -70,14 +70,14 @@ export function Header() {
       className={cn(
         'fixed inset-x-0 top-0 z-50 transition-colors duration-300',
         solid
-          ? 'border-b border-ink/10 bg-paper text-ink'
-          : 'on-dark border-b border-transparent bg-gradient-to-b from-ink/60 to-transparent text-paper',
+          ? 'on-dark border-b border-cream/10 bg-navy text-cream'
+          : 'on-dark border-b border-transparent bg-gradient-to-b from-navy/60 to-transparent text-cream',
       )}
       onMouseLeave={scheduleClose}
     >
       <a
         href="#main"
-        className="sr-only z-[60] bg-ink px-4 py-3 font-display font-bold text-paper uppercase focus:not-sr-only focus:absolute focus:top-2 focus:left-2"
+        className="sr-only z-[60] bg-navy px-4 py-3 font-display font-bold text-cream uppercase focus:not-sr-only focus:absolute focus:top-2 focus:left-2"
       >
         {t('skipToContent')}
       </a>
@@ -104,7 +104,7 @@ export function Header() {
                     aria-current={isActive(item.href) ? 'page' : undefined}
                     className={cn(
                       'relative py-2 pl-2 font-display text-[1.05rem] font-bold tracking-[0.08em] uppercase',
-                      'after:absolute after:inset-x-2 after:-bottom-0.5 after:h-0.5 after:origin-left after:scale-x-0 after:bg-current after:transition-transform after:duration-300 after:ease-athletic hover:after:scale-x-100',
+                      'after:absolute after:inset-x-2 after:-bottom-0.5 after:h-0.5 after:origin-left after:scale-x-0 after:bg-orange after:transition-transform after:duration-300 after:ease-athletic hover:after:scale-x-100',
                       isActive(item.href) && 'after:scale-x-100',
                     )}
                   >
@@ -134,7 +134,7 @@ export function Header() {
                     id={panelId}
                     hidden={!expanded}
                     onMouseEnter={cancelClose}
-                    className="absolute inset-x-0 top-full border-y border-ink/10 bg-paper text-ink"
+                    className="absolute inset-x-0 top-full border-y border-navy/10 bg-cream text-navy"
                   >
                     <MegaPanel item={item} />
                   </div>
@@ -146,12 +146,7 @@ export function Header() {
 
         <div className="flex items-center gap-3 justify-self-end sm:gap-5">
           <LanguageToggle className="hidden sm:flex" />
-          <CtaLink
-            href="/partner"
-            size="sm"
-            variant={solid ? 'primary' : 'inverse'}
-            className="hidden md:inline-flex"
-          >
+          <CtaLink href="/partner" size="sm" variant="inverse" className="hidden md:inline-flex">
             {t('partnerCta')}
           </CtaLink>
 
@@ -170,7 +165,7 @@ export function Header() {
                 <Dialog.Portal forceMount>
                   <Dialog.Content forceMount asChild aria-describedby={undefined}>
                     <motion.div
-                      className="on-dark fixed inset-0 z-[70] flex flex-col overflow-y-auto bg-ink text-paper"
+                      className="on-dark fixed inset-0 z-[70] flex flex-col overflow-y-auto bg-navy text-cream"
                       initial={{ opacity: 0, y: '-4%' }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: '-4%' }}
@@ -195,13 +190,13 @@ function MegaPanel({ item }: { item: (typeof navigation)[number] }) {
   return (
     <div className="mx-auto grid max-w-[1600px] grid-cols-12 gap-10 px-10 py-12">
       <div className="col-span-4">
-        <p className="eyebrow text-steel-dark">{t(item.key)}</p>
+        <p className="eyebrow text-orange-dark">{t(item.key)}</p>
         <p className="mt-4 max-w-sm font-display text-4xl leading-[0.95] font-bold uppercase">
           {t(`megaIntro.${item.key}`)}
         </p>
         <Link
           href={item.href}
-          className="group/btn mt-6 inline-flex items-center gap-2 border-b-2 border-ink pb-1 font-display font-bold tracking-[0.08em] uppercase hover:text-steel-dark"
+          className="group/btn mt-6 inline-flex items-center gap-2 border-b-2 border-navy pb-1 font-display font-bold tracking-[0.08em] uppercase hover:text-orange-dark"
         >
           {t('goToPage', { page: t(item.key) })}
           <span aria-hidden="true" className="transition-transform group-hover/btn:translate-x-1">
@@ -209,12 +204,12 @@ function MegaPanel({ item }: { item: (typeof navigation)[number] }) {
           </span>
         </Link>
       </div>
-      <ul className="col-span-8 grid grid-cols-2 content-start gap-x-10 border-l border-ink/10 pl-10">
+      <ul className="col-span-8 grid grid-cols-2 content-start gap-x-10 border-l border-navy/10 pl-10">
         {item.sections.map((section) => (
-          <li key={section} className="border-b border-ink/10">
+          <li key={section} className="border-b border-navy/10">
             <Link
               href={`${item.href}#${section}`}
-              className="group flex items-center justify-between py-4 font-display text-2xl font-bold uppercase transition-colors hover:text-accent"
+              className="group flex items-center justify-between py-4 font-display text-2xl font-bold uppercase transition-colors hover:text-orange-dark"
             >
               {t(`sections.${section}`)}
               <span
@@ -270,7 +265,7 @@ function MobileMenu({ onNavigate }: { onNavigate: () => void }) {
                     <Link
                       href={`${item.href}#${section}`}
                       onClick={onNavigate}
-                      className="inline-block py-1 text-sm font-medium tracking-wide text-paper/75 uppercase hover:text-paper"
+                      className="inline-block py-1 text-sm font-medium tracking-wide text-cream/75 uppercase hover:text-cream"
                     >
                       {t(`sections.${section}`)}
                     </Link>
@@ -282,7 +277,7 @@ function MobileMenu({ onNavigate }: { onNavigate: () => void }) {
         </ul>
       </nav>
 
-      <div className="space-y-6 border-t border-paper/15 px-4 py-8 sm:px-6">
+      <div className="space-y-6 border-t border-cream/15 px-4 py-8 sm:px-6">
         <div className="flex flex-col gap-4 sm:flex-row">
           <CtaLink
             href="/partner"

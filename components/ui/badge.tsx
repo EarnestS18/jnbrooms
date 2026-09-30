@@ -6,13 +6,15 @@ const badgeVariants = cva(
   {
     variants: {
       variant: {
-        accent: 'bg-accent text-accent-foreground',
-        ink: 'bg-ink text-paper',
-        paper: 'bg-paper text-ink',
+        /** Status badges, e.g. "Live" — always navy text on yellow. */
+        yellow: 'bg-yellow text-navy',
+        orange: 'bg-orange text-navy',
+        navy: 'bg-navy text-cream',
+        cream: 'bg-cream text-navy',
         outline: 'border border-current',
       },
     },
-    defaultVariants: { variant: 'ink' },
+    defaultVariants: { variant: 'navy' },
   },
 );
 

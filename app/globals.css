@@ -1,13 +1,16 @@
 @import 'tailwindcss';
 
 /* ------------------------------------------------------------------
-   DESIGN TOKENS
-   Monochrome base + ONE accent. Change --brand-accent once J&B Rooms'
-   brand colour is confirmed. TODO(brand): confirm brand colour.
+   DESIGN TOKENS — "Ocean Sunset" palette (no pure black or white)
+   navy   #0E2A47  replaces black: headlines, header, footer, dark sections, body text
+   orange #FF6B2C  primary CTAs, stat numbers, active states, highlights
+   yellow #FFC93C  badges, taglines on dark backgrounds, hover accents
+   cream  #FFF1E0  replaces white: page background, text on dark sections
+   orange-dark #C2410C  orange text on cream (readable small text)
+   Rules: always navy text on orange/yellow; never orange/yellow text on cream
+   (use orange-dark); never cream text on orange/yellow.
 ------------------------------------------------------------------- */
 :root {
-  --brand-accent: #0a5c52; /* deep teal — placeholder accent */
-  --brand-accent-foreground: #ffffff;
   --header-height: 4rem;
 }
 
@@ -17,15 +20,20 @@
   }
 }
 
-@theme inline {
-  --color-ink: #000000;
-  --color-paper: #ffffff;
-  --color-mist: #eceff1;
-  --color-steel: #767677;
-  --color-steel-dark: #545455;
-  --color-accent: var(--brand-accent);
-  --color-accent-foreground: var(--brand-accent-foreground);
+@theme {
+  --color-*: initial;
+  --color-navy: #0e2a47;
+  --color-orange: #ff6b2c;
+  --color-yellow: #ffc93c;
+  --color-cream: #fff1e0;
+  --color-orange-dark: #c2410c;
+  /* Muted navy for secondary text on cream (7:1). Not for use on orange. */
+  --color-muted: #3d5470;
+  --color-transparent: transparent;
+  --color-current: currentColor;
+}
 
+@theme inline {
   --font-display: var(--font-barlow-condensed), 'Arial Narrow', Arial, sans-serif;
   --font-sans: var(--font-barlow), system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
 
@@ -87,8 +95,8 @@
   }
 
   body {
-    background: var(--color-paper);
-    color: var(--color-ink);
+    background: var(--color-cream);
+    color: var(--color-navy);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -100,18 +108,23 @@
   }
 
   :focus-visible {
-    outline: 3px solid var(--brand-accent);
+    outline: 3px solid var(--color-orange-dark);
     outline-offset: 3px;
   }
 
   .on-dark :focus-visible,
   .on-dark:focus-visible {
-    outline-color: #ffffff;
+    outline-color: var(--color-yellow);
+  }
+
+  .on-orange :focus-visible,
+  .on-orange:focus-visible {
+    outline-color: var(--color-navy);
   }
 
   ::selection {
-    background: var(--color-ink);
-    color: var(--color-paper);
+    background: var(--color-navy);
+    color: var(--color-cream);
   }
 }
 
@@ -138,10 +151,10 @@
     transform: translate(0, 0);
   }
 
-  /* Outlined display type. Stroke colour follows --outline-color (defaults to ink). */
+  /* Outlined display type. Stroke colour follows --outline-color (defaults to navy). */
   .text-outline {
     color: transparent;
-    -webkit-text-stroke: 1.5px var(--outline-color, var(--color-ink));
+    -webkit-text-stroke: 1.5px var(--outline-color, var(--color-navy));
   }
 
   .no-scrollbar {

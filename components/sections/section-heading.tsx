@@ -10,6 +10,7 @@ export function SectionHeading({
   headlineClassName,
   as = 'h2',
   id,
+  tone = 'cream',
 }: {
   label: string;
   headline: string;
@@ -17,10 +18,20 @@ export function SectionHeading({
   headlineClassName?: string;
   as?: 'h2' | 'h3';
   id?: string;
+  /** Section background: sets a label colour that stays readable on it. */
+  tone?: 'cream' | 'orange' | 'navy';
 }) {
   return (
     <div className={cn('max-w-5xl', className)}>
-      <Reveal as="p" className="eyebrow mb-4 opacity-80">
+      <Reveal
+        as="p"
+        className={cn(
+          'eyebrow mb-4',
+          tone === 'cream' && 'text-orange-dark',
+          tone === 'orange' && 'text-navy',
+          tone === 'navy' && 'text-yellow',
+        )}
+      >
         {label}
       </Reveal>
       <MaskText

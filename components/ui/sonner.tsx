@@ -11,9 +11,9 @@ export function Toaster(props: ToasterProps) {
         unstyled: false,
         classNames: {
           toast:
-            '!rounded-none !border-0 !bg-ink !text-paper !shadow-none font-sans !gap-3 !px-5 !py-4',
+            '!rounded-none !border-0 !bg-navy !text-cream !shadow-none font-sans !gap-3 !px-5 !py-4',
           title: 'font-display !text-base font-bold uppercase tracking-[0.08em]',
-          description: '!text-paper/75',
+          description: '!text-cream/75',
         },
       }}
       {...props}

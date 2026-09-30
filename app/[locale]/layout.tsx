@@ -54,7 +54,7 @@ export async function generateMetadata({
 }
 
 export const viewport: Viewport = {
-  themeColor: '#000000',
+  themeColor: '#0E2A47',
   width: 'device-width',
   initialScale: 1,
 };
@@ -79,7 +79,7 @@ export default async function LocaleLayout({
           <style>{`[data-reveal]{opacity:1!important;transform:none!important;clip-path:none!important}`}</style>
         </noscript>
       </head>
-      <body className="min-h-svh bg-paper font-sans text-ink antialiased">
+      <body className="min-h-svh bg-cream font-sans text-navy antialiased">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

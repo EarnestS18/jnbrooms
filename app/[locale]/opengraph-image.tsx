@@ -22,8 +22,8 @@ export default async function OpengraphImage({ params }: { params: Promise<{ loc
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'space-between',
-        background: '#000',
-        color: '#fff',
+        background: '#0E2A47',
+        color: '#FFF1E0',
         padding: '72px',
         fontFamily: 'sans-serif',
       }}
@@ -45,9 +45,9 @@ export default async function OpengraphImage({ params }: { params: Promise<{ loc
         {t('headline')}
       </div>
       <div
-        style={{ display: 'flex', alignItems: 'center', gap: 16, fontSize: 26, color: '#ECEFF1' }}
+        style={{ display: 'flex', alignItems: 'center', gap: 16, fontSize: 26, color: '#FFC93C' }}
       >
-        <div style={{ width: 56, height: 6, background: '#0a5c52' }} />
+        <div style={{ width: 56, height: 6, background: '#FF6B2C' }} />
         {t('label').toUpperCase()}
       </div>
     </div>,

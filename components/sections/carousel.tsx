@@ -54,8 +54,8 @@ export function Carousel({
   const btn = cn(
     'flex size-12 items-center justify-center border transition-colors disabled:cursor-not-allowed disabled:opacity-30',
     dark
-      ? 'border-paper text-paper enabled:hover:bg-paper enabled:hover:text-ink'
-      : 'border-ink text-ink enabled:hover:bg-ink enabled:hover:text-paper',
+      ? 'border-cream text-cream enabled:hover:bg-cream enabled:hover:text-navy'
+      : 'border-navy text-navy enabled:hover:bg-navy enabled:hover:text-cream',
   );
 
   return (

@@ -13,14 +13,14 @@ export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="on-dark bg-ink text-paper">
+    <footer className="on-dark bg-navy text-cream">
       <div className="mx-auto max-w-[1600px] px-4 pt-20 pb-10 sm:px-6 lg:px-10">
         <div className="grid gap-14 lg:grid-cols-12">
           <div className="lg:col-span-4">
             <Link href="/" aria-label={tn('homeLink')}>
               <Logo className="text-4xl lg:text-5xl" />
             </Link>
-            <p className="mt-5 max-w-sm text-paper/75">{t('tagline')}</p>
+            <p className="mt-5 max-w-sm text-yellow">{t('tagline')}</p>
 
             <div className="mt-10 space-y-5">
               <ul className="space-y-4">
@@ -30,20 +30,20 @@ export function Footer() {
                       type="general"
                       placement="footer"
                       contact={c.id}
-                      className="group inline-flex items-center gap-3 hover:text-paper/75"
+                      className="group inline-flex items-center gap-3 hover:text-yellow"
                     >
                       <WhatsAppIcon className="size-6 shrink-0" />
                       <span>
                         <span className="block font-display text-2xl leading-none font-bold tracking-wide">
                           {c.display}
                         </span>
-                        <span className="mt-1 block text-sm text-paper/70">{c.name}</span>
+                        <span className="mt-1 block text-sm text-cream/70">{c.name}</span>
                       </span>
                     </WhatsAppLink>
                   </li>
                 ))}
               </ul>
-              <address className="text-paper/75 not-italic">
+              <address className="text-cream/75 not-italic">
                 {contact.office.name}
                 <br />
                 {contact.office.full}
@@ -58,7 +58,7 @@ export function Footer() {
                 <li key={item.key}>
                   <Link
                     href={item.href}
-                    className="font-display text-lg font-bold tracking-[0.08em] uppercase hover:text-paper/75"
+                    className="font-display text-lg font-bold tracking-[0.08em] uppercase hover:text-yellow"
                   >
                     {tn(item.key)}
                   </Link>
@@ -67,7 +67,7 @@ export function Footer() {
                       <li key={section}>
                         <Link
                           href={`${item.href}#${section}`}
-                          className="text-sm text-paper/70 transition-colors hover:text-paper"
+                          className="text-sm text-cream/70 transition-colors hover:text-yellow"
                         >
                           {tn(`sections.${section}`)}
                         </Link>
@@ -80,7 +80,7 @@ export function Footer() {
           </nav>
         </div>
 
-        <div className="mt-20 flex flex-col gap-6 border-t border-paper/15 pt-8 md:flex-row md:items-center md:justify-between">
+        <div className="mt-20 flex flex-col gap-6 border-t border-cream/15 pt-8 md:flex-row md:items-center md:justify-between">
           <div className="flex items-center gap-2">
             <span className="sr-only">{t('follow')}</span>
             <a
@@ -88,7 +88,7 @@ export function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Instagram"
-              className="flex size-11 items-center justify-center border border-paper/25 transition-colors hover:bg-paper hover:text-ink"
+              className="flex size-11 items-center justify-center border border-cream/25 transition-colors hover:border-yellow hover:bg-yellow hover:text-navy"
             >
               <InstagramIcon className="size-5" />
             </a>
@@ -97,14 +97,14 @@ export function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn"
-              className="flex size-11 items-center justify-center border border-paper/25 transition-colors hover:bg-paper hover:text-ink"
+              className="flex size-11 items-center justify-center border border-cream/25 transition-colors hover:border-yellow hover:bg-yellow hover:text-navy"
             >
               <LinkedInIcon className="size-5" />
             </a>
           </div>
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-8">
             <LanguageToggle />
-            <p className="text-sm text-paper/70">{t('rights', { year })}</p>
+            <p className="text-sm text-cream/70">{t('rights', { year })}</p>
           </div>
         </div>
       </div>

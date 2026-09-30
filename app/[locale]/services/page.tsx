@@ -58,7 +58,7 @@ export default async function ServicesPage({ params }: Props) {
                 <WipeReveal
                   direction={flip ? 'right' : 'left'}
                   className={cn(
-                    'relative aspect-[4/3] overflow-hidden bg-mist',
+                    'relative aspect-[4/3] overflow-hidden bg-navy/15',
                     flip && 'md:order-2',
                   )}
                 >
@@ -75,7 +75,7 @@ export default async function ServicesPage({ params }: Props) {
                   <Reveal>
                     <h2
                       id={`${service.id}-title`}
-                      className="eyebrow flex items-center gap-3 text-steel-dark"
+                      className="eyebrow flex items-center gap-3 text-orange-dark"
                     >
                       <span className="tabular-nums">{String(i + 1).padStart(2, '0')}</span>
                       <span aria-hidden="true" className="h-px w-8 bg-current" />
@@ -87,7 +87,7 @@ export default async function ServicesPage({ params }: Props) {
                     text={pick(service.headline, locale)}
                     className="mt-4 font-display text-5xl leading-[0.92] font-extrabold tracking-tight uppercase lg:text-6xl"
                   />
-                  <Reveal as="p" delay={0.15} className="mt-6 max-w-md text-lg text-steel-dark">
+                  <Reveal as="p" delay={0.15} className="mt-6 max-w-md text-lg text-muted">
                     {pick(service.body, locale)}
                   </Reveal>
                 </div>

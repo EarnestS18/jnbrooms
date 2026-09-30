@@ -69,9 +69,13 @@ export default async function PortfolioPage({ params }: Props) {
       </section>
 
       {/* #timeline */}
-      <section id="timeline" className="overflow-hidden bg-mist py-24 lg:py-32">
+      <section id="timeline" className="on-dark overflow-hidden bg-navy py-24 text-cream lg:py-32">
         <Container>
-          <SectionHeading label={t('timeline.label')} headline={t('timeline.headline')} />
+          <SectionHeading
+            label={t('timeline.label')}
+            headline={t('timeline.headline')}
+            tone="navy"
+          />
           <div className="mt-14">
             <Timeline entries={timeline} hint={t('timeline.hint')} />
           </div>
@@ -79,13 +83,17 @@ export default async function PortfolioPage({ params }: Props) {
       </section>
 
       {/* #upcoming-projects */}
-      <section id="upcoming-projects" className="py-24 lg:py-32">
+      <section id="upcoming-projects" className="on-orange bg-orange py-24 text-navy lg:py-32">
         <Container>
-          <SectionHeading label={t('upcoming.label')} headline={t('upcoming.headline')} />
+          <SectionHeading
+            label={t('upcoming.label')}
+            headline={t('upcoming.headline')}
+            tone="orange"
+          />
 
           {/* Featured current project: J&B Rooms BNR */}
           <article className="mt-14 grid gap-0 lg:grid-cols-2" aria-labelledby="bnr-title">
-            <WipeReveal className="relative aspect-[4/3] overflow-hidden bg-mist lg:aspect-auto lg:min-h-[36rem]">
+            <WipeReveal className="relative aspect-[4/3] overflow-hidden bg-navy/20 lg:aspect-auto lg:min-h-[36rem]">
               <Image
                 src={bnrProject.image}
                 alt={`${bnrProject.name}, ${bnrProject.location}`}
@@ -94,30 +102,30 @@ export default async function PortfolioPage({ params }: Props) {
                 className="object-cover"
                 {...blurFor(bnrProject.image)}
               />
-              <Badge variant="accent" className="absolute top-4 left-4">
+              <Badge variant="yellow" className="absolute top-4 left-4">
                 {t('upcoming.featureLabel')}
               </Badge>
             </WipeReveal>
 
-            <div className="on-dark bg-ink p-6 text-paper sm:p-10 lg:p-14">
+            <div className="on-dark bg-navy p-6 text-cream sm:p-10 lg:p-14">
               <Reveal>
-                <p className="eyebrow text-paper/75">{bnrProject.location}</p>
+                <p className="eyebrow text-yellow">{bnrProject.location}</p>
                 <h3
                   id="bnr-title"
                   className="mt-3 font-display text-5xl leading-none font-extrabold uppercase lg:text-6xl"
                 >
                   {bnrProject.name}
                 </h3>
-                <p className="mt-5 max-w-xl text-paper/80">
+                <p className="mt-5 max-w-xl text-cream/80">
                   {pick(bnrProject.description, locale)}
                 </p>
               </Reveal>
 
-              <Reveal delay={0.1} className="mt-10 border-t border-paper/30 pt-6">
-                <p className="font-display text-5xl leading-none font-extrabold">
+              <Reveal delay={0.1} className="mt-10 border-t border-cream/30 pt-6">
+                <p className="font-display text-5xl leading-none font-extrabold text-orange">
                   {bnrProject.rooms}
                 </p>
-                <p className="eyebrow mt-2 text-paper/75">{tc('roomsLabel')}</p>
+                <p className="eyebrow mt-2 text-cream/75">{tc('roomsLabel')}</p>
               </Reveal>
 
               <Reveal delay={0.2} className="mt-10">
@@ -141,7 +149,7 @@ export default async function PortfolioPage({ params }: Props) {
               >
                 {pipeline.map((p) => (
                   <StaggerItem as="li" key={p.slug}>
-                    <PropertyCard property={p} headingLevel="h4" />
+                    <PropertyCard property={p} headingLevel="h4" tone="orange" />
                   </StaggerItem>
                 ))}
               </Stagger>

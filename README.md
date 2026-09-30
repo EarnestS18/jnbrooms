@@ -110,10 +110,39 @@ Every image in `public/images` is a generated placeholder labelled with its own 
 Overwrite it with a real photo **using the same file name**. Blur placeholders are regenerated on
 the next build. You don't need to touch any code.
 
-### Brand colour and logo
+### Colour palette: "Ocean Sunset"
 
-- Accent colour: change `--brand-accent` in `app/globals.css`.
-- Logo: replace the text wordmark in `components/icons/logo.tsx` and `app/icon.svg`.
+The site uses no pure black or white. The palette is defined once as CSS tokens in
+`app/globals.css`, and Tailwind's default colours are switched off so only these can be used:
+
+| Token                 | Hex       | Tailwind      | Use                                                                 |
+| --------------------- | --------- | ------------- | ------------------------------------------------------------------- |
+| `--color-navy`        | `#0E2A47` | `navy`        | Replaces black: headlines, header, footer, dark sections, body text |
+| `--color-orange`      | `#FF6B2C` | `orange`      | Primary CTAs, stat numbers, active states, highlights               |
+| `--color-yellow`      | `#FFC93C` | `yellow`      | Badges (e.g. "Live"), taglines on dark backgrounds, hover accents   |
+| `--color-cream`       | `#FFF1E0` | `cream`       | Replaces white: page background, text on dark sections              |
+| `--color-orange-dark` | `#C2410C` | `orange-dark` | Orange text on cream (readable small text)                          |
+| `--color-muted`       | `#3D5470` | `muted`       | Secondary text on cream only                                        |
+
+Rules:
+
+- Always use **navy text on orange or yellow** buttons and badges. Cream text on these fails
+  contrast (2.6:1).
+- Never put orange or yellow text on cream. Use `orange-dark` instead.
+- Section backgrounds alternate **navy → cream → orange → cream**. `CtaBand`, `SectionHeading`,
+  `PropertyCard` and `ValueCardView` take a `tone` prop so their text stays readable on each
+  background.
+
+Measured contrast (WCAG AA): navy on cream 13.1:1 · muted on cream 7.0:1 · orange-dark on cream
+4.7:1 · cream on navy 13.1:1 · yellow on navy 9.5:1 · navy on orange 5.1:1 · navy on yellow 9.5:1.
+
+### Logo
+
+- Use navy (`#0E2A47`) on light backgrounds and cream (`#FFF1E0`) on dark backgrounds. The
+  wordmark uses `currentColor`, so it follows the section's text colour automatically.
+- Never place the logo on orange or yellow at small sizes.
+- To swap in the official logo, replace the text wordmark in `components/icons/logo.tsx` and
+  `app/icon.svg`.
 
 ## 5. Deploying (GitHub → Vercel)
 
@@ -165,7 +194,7 @@ Search the code for `TODO` to find each one.
 - [ ] Total rooms now compute to 393 (shown as "300+", including BNR); live rooms are shown separately
 - [ ] Service scope to be confirmed by management (`data/services.ts`)
 - [ ] WhatsApp operating hours (`contact.hours.value` in messages)
-- [ ] Brand colour, logo files, real photography, email, phone, Instagram/LinkedIn URLs
+- [ ] Logo files, real photography, email, phone, Instagram/LinkedIn URLs
 - [ ] Earnest Surya (CTO): confirm bio
 
 ## Assumptions

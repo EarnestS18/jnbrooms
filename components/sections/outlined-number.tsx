@@ -5,7 +5,16 @@ import { fade, fillUp } from '@/lib/motion';
 import { cn } from '@/lib/utils';
 
 /** Large outlined number that fills with colour when it enters the viewport. */
-export function OutlinedNumber({ value, className }: { value: string; className?: string }) {
+export function OutlinedNumber({
+  value,
+  className,
+  fillClassName = 'text-orange',
+}: {
+  value: string;
+  className?: string;
+  /** Fill colour once revealed — orange on cream/navy, navy on orange. */
+  fillClassName?: string;
+}) {
   const reduce = useReducedMotion();
   // The observer sits on the unclipped wrapper: a fully clipped element never "intersects".
   return (
@@ -19,7 +28,7 @@ export function OutlinedNumber({ value, className }: { value: string; className?
       <span className="text-outline">{value}</span>
       <motion.span
         data-reveal=""
-        className="absolute inset-0 text-accent"
+        className={cn('absolute inset-0', fillClassName)}
         variants={reduce ? fade : fillUp}
       >
         {value}

@@ -46,8 +46,8 @@ function rng(seed) {
 function label(file, w, h) {
   const fs = Math.round(Math.max(14, w / 70));
   return `<g font-family="DejaVu Sans, Arial, sans-serif" font-weight="700">
-    <rect x="${fs}" y="${h - fs * 3.2}" width="${fs * 0.7 * (file.length + 15)}" height="${fs * 2}" fill="#000" fill-opacity="0.72"/>
-    <text x="${fs * 1.5}" y="${h - fs * 1.8}" font-size="${fs}" fill="#fff" letter-spacing="1">PLACEHOLDER · ${file}</text>
+    <rect x="${fs}" y="${h - fs * 3.2}" width="${fs * 0.7 * (file.length + 15)}" height="${fs * 2}" fill="#0E2A47" fill-opacity="0.85"/>
+    <text x="${fs * 1.5}" y="${h - fs * 1.8}" font-size="${fs}" fill="#FFF1E0" letter-spacing="1">PLACEHOLDER · ${file}</text>
   </g>`;
 }
 
@@ -68,7 +68,7 @@ function building(file, w, h) {
     for (let x = 0; x < cols; x++) {
       const lit = r() > 0.55;
       const o = lit ? 0.55 + r() * 0.4 : 0.08 + r() * 0.1;
-      const fill = lit ? '#f4e3c3' : '#9fb3c8';
+      const fill = lit ? (r() > 0.5 ? '#FFC93C' : '#FFF1E0') : '#5a7391';
       windows += `<rect x="${bx + x * cw + cw * 0.18}" y="${by + y * rh + rh * 0.2}" width="${cw * 0.64}" height="${rh * 0.55}" fill="${fill}" fill-opacity="${o.toFixed(2)}"/>`;
     }
   }
@@ -76,21 +76,21 @@ function building(file, w, h) {
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}">
     <defs>
       <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0" stop-color="hsl(${hue},35%,14%)"/>
-        <stop offset="0.65" stop-color="hsl(${hue - 20},25%,32%)"/>
-        <stop offset="1" stop-color="hsl(28,45%,55%)"/>
+        <stop offset="0" stop-color="#0E2A47"/>
+        <stop offset="0.6" stop-color="hsl(${hue},45%,${24 + Math.round(r() * 8)}%)"/>
+        <stop offset="1" stop-color="#FF6B2C"/>
       </linearGradient>
       <linearGradient id="bld" x1="0" y1="0" x2="1" y2="0">
-        <stop offset="0" stop-color="#1b1d20"/><stop offset="1" stop-color="#2d3136"/>
+        <stop offset="0" stop-color="#0a1f35"/><stop offset="1" stop-color="#14365a"/>
       </linearGradient>
     </defs>
     <rect width="${w}" height="${h}" fill="url(#sky)"/>
-    <rect x="${nx}" y="${h * 0.45}" width="${w - nx}" height="${h * 0.55}" fill="#15171a"/>
-    <rect x="0" y="${h * 0.55}" width="${bx - w * 0.02}" height="${h * 0.45}" fill="#131517"/>
+    <rect x="${nx}" y="${h * 0.45}" width="${w - nx}" height="${h * 0.55}" fill="#0a1d31"/>
+    <rect x="0" y="${h * 0.55}" width="${bx - w * 0.02}" height="${h * 0.45}" fill="#0b2038"/>
     <rect x="${bx}" y="${by}" width="${bw}" height="${bh}" fill="url(#bld)"/>
-    <rect x="${bx}" y="${by}" width="${bw}" height="${h * 0.012}" fill="#0a5c52"/>
+    <rect x="${bx}" y="${by}" width="${bw}" height="${h * 0.012}" fill="#FF6B2C"/>
     ${windows}
-    <rect x="0" y="${h * 0.93}" width="${w}" height="${h * 0.07}" fill="#0b0c0d"/>
+    <rect x="0" y="${h * 0.93}" width="${w}" height="${h * 0.07}" fill="#08182a"/>
     ${label(file, w, h)}
   </svg>`;
 }
@@ -103,18 +103,18 @@ function interior(file, w, h) {
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}">
     <defs>
       <radialGradient id="light" cx="${lx / w}" cy="0.3" r="0.8">
-        <stop offset="0" stop-color="hsl(35,40%,${tone + 45}%)"/>
-        <stop offset="1" stop-color="hsl(210,10%,${tone - 10}%)"/>
+        <stop offset="0" stop-color="#FFC93C"/>
+        <stop offset="1" stop-color="hsl(211,${40 + tone}%,${tone - 2}%)"/>
       </radialGradient>
     </defs>
     <rect width="${w}" height="${h}" fill="url(#light)"/>
-    <polygon points="0,${h} ${w * 0.22},${h * 0.62} ${w * 0.78},${h * 0.62} ${w},${h}" fill="#000" fill-opacity="0.35"/>
-    <rect x="${w * 0.22}" y="${h * 0.18}" width="${w * 0.56}" height="${h * 0.44}" fill="#000" fill-opacity="0.12"/>
-    <rect x="${w * 0.3}" y="${h * 0.55}" width="${w * 0.4}" height="${h * 0.14}" fill="#f2f2f2" fill-opacity="0.85"/>
-    <rect x="${w * 0.3}" y="${h * 0.5}" width="${w * 0.4}" height="${h * 0.06}" fill="#d9d9d9"/>
-    <rect x="${w * 0.33}" y="${h * 0.46}" width="${w * 0.1}" height="${h * 0.05}" fill="#fff"/>
-    <rect x="${w * 0.57}" y="${h * 0.46}" width="${w * 0.1}" height="${h * 0.05}" fill="#fff"/>
-    <rect x="${w * 0.47}" y="${h * 0.22}" width="${w * 0.06}" height="${h * 0.2}" fill="#0a5c52" fill-opacity="0.8"/>
+    <polygon points="0,${h} ${w * 0.22},${h * 0.62} ${w * 0.78},${h * 0.62} ${w},${h}" fill="#0E2A47" fill-opacity="0.45"/>
+    <rect x="${w * 0.22}" y="${h * 0.18}" width="${w * 0.56}" height="${h * 0.44}" fill="#0E2A47" fill-opacity="0.15"/>
+    <rect x="${w * 0.3}" y="${h * 0.55}" width="${w * 0.4}" height="${h * 0.14}" fill="#FFF1E0" fill-opacity="0.9"/>
+    <rect x="${w * 0.3}" y="${h * 0.5}" width="${w * 0.4}" height="${h * 0.06}" fill="#f3dcc0"/>
+    <rect x="${w * 0.33}" y="${h * 0.46}" width="${w * 0.1}" height="${h * 0.05}" fill="#FFF1E0"/>
+    <rect x="${w * 0.57}" y="${h * 0.46}" width="${w * 0.1}" height="${h * 0.05}" fill="#FFF1E0"/>
+    <rect x="${w * 0.47}" y="${h * 0.22}" width="${w * 0.06}" height="${h * 0.2}" fill="#FF6B2C" fill-opacity="0.9"/>
     ${label(file, w, h)}
   </svg>`;
 }
@@ -126,12 +126,12 @@ function portrait(file, w, h) {
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}">
     <defs>
       <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0" stop-color="hsl(200,6%,${bg}%)"/><stop offset="1" stop-color="hsl(200,6%,${bg - 25}%)"/>
+        <stop offset="0" stop-color="hsl(33,100%,${bg + 5}%)"/><stop offset="1" stop-color="hsl(18,100%,${bg - 15}%)"/>
       </linearGradient>
     </defs>
     <rect width="${w}" height="${h}" fill="url(#bg)"/>
-    <ellipse cx="${w / 2}" cy="${h * 0.4}" rx="${w * 0.17}" ry="${w * 0.21}" fill="#2b2d30"/>
-    <path d="M ${w * 0.12} ${h} C ${w * 0.14} ${h * 0.68}, ${w * 0.3} ${h * 0.62}, ${w / 2} ${h * 0.62} C ${w * 0.7} ${h * 0.62}, ${w * 0.86} ${h * 0.68}, ${w * 0.88} ${h} Z" fill="#1d1f22"/>
+    <ellipse cx="${w / 2}" cy="${h * 0.4}" rx="${w * 0.17}" ry="${w * 0.21}" fill="#14365a"/>
+    <path d="M ${w * 0.12} ${h} C ${w * 0.14} ${h * 0.68}, ${w * 0.3} ${h * 0.62}, ${w / 2} ${h * 0.62} C ${w * 0.7} ${h * 0.62}, ${w * 0.86} ${h * 0.68}, ${w * 0.88} ${h} Z" fill="#0E2A47"/>
     ${label(file, w, h)}
   </svg>`;
 }

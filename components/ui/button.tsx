@@ -12,18 +12,18 @@ export const buttonVariants = cva(
   {
     variants: {
       variant: {
-        /** Black button, black offset outline — for light backgrounds. */
-        primary: 'bg-ink text-paper hover:text-mist/70 [--offset-color:var(--color-ink)]',
-        /** White button with black border — secondary action on light backgrounds. */
+        /** Primary CTA on cream: orange with navy text (cream text on orange fails contrast). */
+        primary: 'bg-orange text-navy hover:bg-yellow [--offset-color:var(--color-navy)]',
+        /** Secondary action on cream: cream with navy border. */
         secondary:
-          'border border-ink bg-paper text-ink hover:bg-mist [--offset-color:var(--color-ink)]',
-        /** White button — primary action on dark backgrounds/photos. */
-        inverse: 'bg-paper text-ink hover:text-steel-dark [--offset-color:var(--color-paper)]',
-        /** Transparent with white border — secondary action on dark backgrounds/photos. */
+          'border border-navy bg-cream text-navy hover:bg-yellow [--offset-color:var(--color-navy)]',
+        /** Primary CTA on navy sections/photos: orange with a cream offset outline. */
+        inverse: 'bg-orange text-navy hover:bg-yellow [--offset-color:var(--color-cream)]',
+        /** Secondary action on navy sections/photos. */
         'outline-inverse':
-          'border border-paper bg-transparent text-paper hover:bg-paper/10 [--offset-color:var(--color-paper)]',
-        accent:
-          'bg-accent text-accent-foreground hover:opacity-90 [--offset-color:var(--brand-accent)]',
+          'border border-cream bg-transparent text-cream hover:bg-cream hover:text-navy [--offset-color:var(--color-cream)]',
+        /** CTA on orange sections: navy with cream text. */
+        navy: 'bg-navy text-cream hover:text-yellow [--offset-color:var(--color-navy)]',
       },
       size: {
         sm: 'h-10 px-4 text-sm',

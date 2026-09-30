@@ -22,9 +22,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 const cardTheme = [
-  'bg-paper text-ink border-t border-ink',
-  'bg-mist text-ink',
-  'on-dark bg-ink text-paper',
+  'bg-cream text-navy border-t border-navy',
+  'on-orange bg-orange text-navy',
+  'on-dark bg-navy text-cream',
 ] as const;
 
 const levelValue: Record<Level, number> = { low: 1, medium: 2, high: 3 };
@@ -50,7 +50,7 @@ export default async function PartnerPage({ params }: Props) {
       <section id="management-models" className="py-24 lg:py-32">
         <Container>
           <SectionHeading label={t('models.label')} headline={t('models.headline')} />
-          <Reveal as="p" className="mt-8 max-w-2xl text-lg text-steel-dark">
+          <Reveal as="p" className="mt-8 max-w-2xl text-lg text-muted">
             {t('models.intro')}
           </Reveal>
           <Stagger as="ol" gap={0.1} className="mt-16 grid gap-6 md:grid-cols-3">
@@ -59,7 +59,7 @@ export default async function PartnerPage({ params }: Props) {
                 <Link
                   href={`#${m.id}`}
                   aria-label={`${t('models.readMore', { number: m.number })}: ${pick(m.name, locale)}`}
-                  className="group flex h-full min-h-[22rem] flex-col justify-between border border-ink p-6 transition-colors duration-300 hover:bg-ink hover:text-paper lg:p-10"
+                  className="group flex h-full min-h-[22rem] flex-col justify-between border border-navy p-6 transition-colors duration-300 hover:bg-orange lg:p-10"
                 >
                   <span className="font-display text-[7rem] leading-none font-extrabold lg:text-[10rem]">
                     {m.number}
@@ -68,7 +68,7 @@ export default async function PartnerPage({ params }: Props) {
                     <span className="block font-display text-3xl leading-none font-bold uppercase lg:text-4xl">
                       {pick(m.name, locale)}
                     </span>
-                    <span className="mt-3 block text-steel-dark transition-colors group-hover:text-paper/80">
+                    <span className="mt-3 block text-muted transition-colors group-hover:text-navy">
                       {pick(m.summary, locale)}
                     </span>
                     <span
@@ -108,7 +108,12 @@ export default async function PartnerPage({ params }: Props) {
                 </span>
               </div>
               <div className="flex flex-col justify-end lg:col-span-7">
-                <p className="eyebrow opacity-75">
+                <p
+                  className={cn(
+                    'eyebrow',
+                    i === 2 ? 'text-yellow' : i === 0 ? 'text-orange-dark' : 'text-navy',
+                  )}
+                >
                   {t('models.label')} {m.number}
                 </p>
                 <h2
@@ -117,11 +122,9 @@ export default async function PartnerPage({ params }: Props) {
                 >
                   {pick(m.name, locale)}
                 </h2>
-                <p className="mt-6 max-w-2xl text-lg opacity-85 lg:text-xl">
-                  {pick(m.description, locale)}
-                </p>
+                <p className="mt-6 max-w-2xl text-lg lg:text-xl">{pick(m.description, locale)}</p>
                 {m.bestFor ? (
-                  <p className="mt-6 max-w-2xl border-l-4 border-accent pl-4 text-lg">
+                  <p className="mt-6 max-w-2xl border-l-4 border-orange pl-4 text-lg">
                     <strong className="font-display font-bold tracking-[0.08em] uppercase">
                       {t('models.bestFor')}:
                     </strong>{' '}
@@ -132,7 +135,7 @@ export default async function PartnerPage({ params }: Props) {
                   <WhatsAppButton
                     type={`model-${m.id}`}
                     placement={`model-card-${m.number}`}
-                    variant={i === 2 ? 'inverse' : 'primary'}
+                    variant={i === 2 ? 'inverse' : i === 1 ? 'navy' : 'primary'}
                   >
                     {t('models.ask')}
                   </WhatsAppButton>
@@ -144,7 +147,7 @@ export default async function PartnerPage({ params }: Props) {
       </div>
 
       {/* Comparison table */}
-      <section aria-labelledby="comparison-title" className="relative z-10 bg-paper py-24 lg:py-32">
+      <section aria-labelledby="comparison-title" className="relative z-10 bg-cream py-24 lg:py-32">
         <Container>
           <SectionHeading
             label={t('comparison.label')}
@@ -153,11 +156,11 @@ export default async function PartnerPage({ params }: Props) {
           />
           <Reveal className="mt-12 overflow-x-auto">
             <table className="w-full min-w-[40rem] border-collapse text-left">
-              <caption className="caption-bottom pt-4 text-left text-sm text-steel-dark">
+              <caption className="caption-bottom pt-4 text-left text-sm text-muted">
                 {t('comparison.caption')}
               </caption>
               <thead>
-                <tr className="border-b-2 border-ink">
+                <tr className="border-b-2 border-navy">
                   <th scope="col" className="eyebrow py-4 pr-6">
                     {t('comparison.model')}
                   </th>
@@ -170,9 +173,9 @@ export default async function PartnerPage({ params }: Props) {
               </thead>
               <tbody>
                 {managementModels.map((m) => (
-                  <tr key={m.id} className="border-b border-ink/15">
+                  <tr key={m.id} className="border-b border-navy/15">
                     <th scope="row" className="py-6 pr-6 align-top">
-                      <span className="block font-display text-sm font-bold text-steel-dark">
+                      <span className="block font-display text-sm font-bold text-orange-dark">
                         {m.number}
                       </span>
                       <span className="font-display text-2xl leading-none font-bold uppercase">
@@ -207,7 +210,7 @@ function LevelMeter({ value }: { value: number }) {
   return (
     <span aria-hidden="true" className="flex gap-1">
       {[1, 2, 3].map((n) => (
-        <span key={n} className={cn('h-2 w-10', n <= value ? 'bg-ink' : 'bg-mist')} />
+        <span key={n} className={cn('h-2 w-10', n <= value ? 'bg-orange' : 'bg-navy/15')} />
       ))}
     </span>
   );

@@ -27,7 +27,7 @@ export function CopyNumber({ value, label }: { value: string; label?: string }) 
       onClick={copy}
       aria-label={label ?? t('copyNumber')}
       title={label ?? t('copyNumber')}
-      className="flex size-12 shrink-0 items-center justify-center border border-paper/40 transition-colors hover:bg-paper hover:text-ink"
+      className="flex size-12 shrink-0 items-center justify-center border border-cream/40 transition-colors hover:bg-cream hover:text-navy"
     >
       {copied ? (
         <Check className="size-5" aria-hidden="true" />

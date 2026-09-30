@@ -42,7 +42,7 @@ export function Timeline({ entries, hint }: { entries: TimelineEntry[]; hint: st
     <div ref={section}>
       {/* Desktop: horizontal */}
       <div className="hidden lg:block">
-        <p className="eyebrow mb-6 text-steel-dark">{hint} →</p>
+        <p className="eyebrow mb-6 text-yellow">{hint} →</p>
         <div
           ref={track}
           tabIndex={0}
@@ -64,12 +64,12 @@ export function Timeline({ entries, hint }: { entries: TimelineEntry[]; hint: st
           >
             <span
               aria-hidden="true"
-              className="absolute top-[5.5rem] right-0 left-0 h-px bg-ink/15"
+              className="absolute top-[5.5rem] right-0 left-0 h-px bg-cream/20"
             />
             <motion.span
               aria-hidden="true"
               data-reveal=""
-              className="absolute top-[5.5rem] right-0 left-0 h-[3px] origin-left -translate-y-px bg-ink"
+              className="absolute top-[5.5rem] right-0 left-0 h-[3px] origin-left -translate-y-px bg-orange"
               style={reduce ? undefined : { scaleX: progress }}
             />
             {entries.map((entry) => (
@@ -85,7 +85,7 @@ export function Timeline({ entries, hint }: { entries: TimelineEntry[]; hint: st
                   aria-hidden="true"
                   data-reveal=""
                   variants={marker}
-                  className="absolute top-[5.5rem] left-0 size-4 -translate-y-1/2 bg-accent"
+                  className="absolute top-[5.5rem] left-0 size-4 -translate-y-1/2 bg-yellow"
                 />
                 <motion.ul data-reveal="" variants={item} className="mt-14 space-y-2">
                   {entry.items.map((name) => (
@@ -108,11 +108,11 @@ export function Timeline({ entries, hint }: { entries: TimelineEntry[]; hint: st
         viewport={{ once: true, amount: 0.1 }}
         variants={stagger(0.1)}
       >
-        <span aria-hidden="true" className="absolute top-2 bottom-2 left-[7px] w-px bg-ink/15" />
+        <span aria-hidden="true" className="absolute top-2 bottom-2 left-[7px] w-px bg-cream/20" />
         <motion.span
           aria-hidden="true"
           data-reveal=""
-          className="absolute top-2 bottom-2 left-[6px] w-[3px] origin-top bg-ink"
+          className="absolute top-2 bottom-2 left-[6px] w-[3px] origin-top bg-orange"
           style={reduce ? undefined : { scaleY: progress }}
         />
         {entries.map((entry) => (
@@ -121,7 +121,7 @@ export function Timeline({ entries, hint }: { entries: TimelineEntry[]; hint: st
               aria-hidden="true"
               data-reveal=""
               variants={marker}
-              className="absolute top-3 -left-10 size-4 bg-accent"
+              className="absolute top-3 -left-10 size-4 bg-yellow"
             />
             <motion.div data-reveal="" variants={item}>
               <span className="block font-display text-5xl leading-none font-extrabold">

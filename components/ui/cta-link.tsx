@@ -30,7 +30,7 @@ export function ArrowLink({
     <Link
       href={href}
       className={cn(
-        'group/btn inline-flex items-center gap-2 border-b-2 border-current pb-1 font-display text-base font-bold tracking-[0.08em] uppercase transition-colors hover:text-steel',
+        'group/btn inline-flex items-center gap-2 border-b-2 border-current pb-1 font-display text-base font-bold tracking-[0.08em] uppercase transition-colors',
         className,
       )}
       {...props}
