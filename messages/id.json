@@ -1,0 +1,331 @@
+{
+  "meta": {
+    "siteName": "J&B Rooms",
+    "tagline": "Manajemen hotel yang menciptakan nilai berkelanjutan.",
+    "home": {
+      "title": "J&B Rooms — Perusahaan Manajemen Hotel di Jakarta",
+      "description": "J&B Rooms adalah perusahaan manajemen hotel berbasis di Jakarta yang menghadirkan profitabilitas berkelanjutan bagi pemilik properti, layanan terbaik bagi tamu, dan tim perhotelan yang profesional."
+    },
+    "about": {
+      "title": "Tentang J&B Rooms",
+      "description": "Didirikan di Jakarta pada tahun 2019, J&B Rooms berkembang dari satu properti menjadi portofolio manajemen hotel multi-lokasi. Kenali visi, misi, dan jajaran pimpinan kami."
+    },
+    "services": {
+      "title": "Layanan Manajemen Hotel",
+      "description": "Manajemen hotel, operasional, manajemen pendapatan, manajemen OTA, dan manajemen SDM — semua yang dibutuhkan properti Anda untuk berkinerja optimal."
+    },
+    "portfolio": {
+      "title": "Portofolio Kami",
+      "description": "Jelajahi hotel-hotel yang dikelola J&B Rooms di Jakarta, Jabodetabek, dan luar Jakarta, beserta perjalanan pengembangan dan proyek mendatang kami."
+    },
+    "partner": {
+      "title": "Bermitra Dengan Kami — Model Kerja Sama",
+      "description": "Fixed Net Income, Fixed Gross Percentage, atau Bagi Hasil: pilih model manajemen hotel yang dirancang sesuai properti Anda."
+    },
+    "contact": {
+      "title": "Kontak — Hubungi Kami via WhatsApp",
+      "description": "Pemilik properti yang mencari mitra manajemen hotel? Hubungi tim J&B Rooms langsung melalui WhatsApp."
+    },
+    "notFound": {
+      "title": "Halaman tidak ditemukan"
+    }
+  },
+  "nav": {
+    "skipToContent": "Langsung ke konten",
+    "home": "Beranda",
+    "about": "Tentang",
+    "services": "Layanan",
+    "portfolio": "Portofolio",
+    "partner": "Bermitra",
+    "contact": "Kontak",
+    "partnerCta": "Bermitra Dengan Kami",
+    "openMenu": "Buka menu",
+    "closeMenu": "Tutup menu",
+    "mainNavigation": "Navigasi utama",
+    "language": "Bahasa",
+    "switchLanguage": "Ganti bahasa ke {language}",
+    "goToPage": "Buka {page}",
+    "homeLink": "Beranda J&B Rooms",
+    "sections": {
+      "about": "Tentang J&B Rooms",
+      "vision-mission": "Visi & Misi",
+      "leadership": "Jajaran Pimpinan",
+      "why-jb-rooms": "Mengapa J&B Rooms",
+      "hotel-management": "Manajemen Hotel",
+      "operations": "Operasional",
+      "revenue-management": "Manajemen Pendapatan",
+      "ota-management": "Manajemen OTA",
+      "people-management": "Manajemen SDM",
+      "current-properties": "Properti Saat Ini",
+      "timeline": "Perjalanan Pengembangan",
+      "upcoming-projects": "Proyek Berjalan & Mendatang",
+      "management-models": "Model Kerja Sama",
+      "fixed-net-income": "Fixed Net Income",
+      "fixed-gross-percentage": "Fixed Gross Percentage",
+      "profit-share": "Bagi Hasil",
+      "whatsapp": "Chat via WhatsApp",
+      "office": "Kantor Pusat"
+    },
+    "megaIntro": {
+      "about": "Kisah kami, tim kami, dan alasan pemilik properti memilih kami.",
+      "services": "Semua yang dibutuhkan hotel Anda untuk berkinerja optimal.",
+      "portfolio": "Hotel yang kami kelola dan yang akan segera hadir.",
+      "partner": "Tiga model kerja sama, dirancang sesuai properti Anda.",
+      "contact": "Bicara langsung dengan tim kami melalui WhatsApp."
+    },
+    "submenu": "Submenu {page}"
+  },
+  "common": {
+    "rooms": "{count} kamar",
+    "roomsLabel": "Kamar",
+    "previous": "Sebelumnya",
+    "next": "Berikutnya",
+    "scrollDown": "Gulir ke bawah",
+    "launch": "Rilis {year}",
+    "opened": "Sejak {year}",
+    "status": {
+      "live": "Beroperasi",
+      "upcoming": "Segera Hadir",
+      "tbc": "TBC",
+      "current": "Proyek berjalan"
+    },
+    "regions": {
+      "all": "Semua",
+      "jakarta": "Jakarta",
+      "greater-jakarta": "Jabodetabek / Jawa Barat",
+      "outside-jakarta": "Luar Jakarta"
+    },
+    "levels": {
+      "low": "Rendah",
+      "medium": "Sedang",
+      "high": "Tinggi"
+    },
+    "placeholderImage": "Foto sementara {name}"
+  },
+  "home": {
+    "hero": {
+      "label": "Manajemen hotel · Jakarta",
+      "headline": "Manajemen hotel yang menciptakan nilai berkelanjutan",
+      "subtext": "J&B Rooms adalah perusahaan manajemen hotel yang berfokus menghadirkan profitabilitas berkelanjutan bagi pemilik properti, layanan terbaik bagi tamu hotel, serta membangun tim perhotelan yang andal dan profesional.",
+      "primaryCta": "Bermitra Dengan Kami",
+      "secondaryCta": "Jelajahi Properti Kami",
+      "imageAlt": "Gedung hotel yang dikelola J&B Rooms saat senja"
+    },
+    "stats": {
+      "label": "J&B Rooms dalam angka",
+      "established": "Berdiri",
+      "properties": "Properti",
+      "rooms": "Kamar, beroperasi & dalam pengembangan",
+      "liveRooms": "{count} kamar beroperasi saat ini",
+      "years": "Tahun mengelola hotel sejak {year}"
+    },
+    "why": {
+      "label": "Mengapa J&B Rooms",
+      "headline": "Dibangun atas kepercayaan. Digerakkan oleh kinerja.",
+      "cta": "Semua alasan bermitra dengan kami"
+    },
+    "featured": {
+      "label": "Portofolio Kami",
+      "headline": "Properti yang kami kelola",
+      "cta": "Lihat seluruh portofolio",
+      "carouselLabel": "Properti unggulan"
+    },
+    "models": {
+      "label": "Bermitra Dengan Kami",
+      "headline": "Tiga cara untuk bekerja sama",
+      "cta": "Bandingkan model kerja sama"
+    },
+    "ctaBand": {
+      "headline": "Punya properti? Mari diskusikan model manajemen yang tepat.",
+      "cta": "Bicara Dengan Tim Kami"
+    }
+  },
+  "about": {
+    "hero": {
+      "label": "Tentang J&B Rooms",
+      "headline": "Lahir di Jakarta. Sejak 2019.",
+      "imageAlt": "Lobi hotel yang dikelola J&B Rooms"
+    },
+    "story": {
+      "label": "Tentang J&B Rooms",
+      "headline": "Dari 9 kamar menjadi portofolio multi-lokasi",
+      "p1": "J&B Rooms didirikan pada tahun 2019 oleh Hie Yenny Kristina, berawal dari satu properti: J&B Rooms Pramuka, yang dibuka dengan 9 kamar.",
+      "p2": "Sejak itu, J&B Rooms berkembang menjadi portofolio manajemen hotel multi-lokasi di Jakarta, Jabodetabek, dan luar Jakarta — bermitra dengan pemilik properti untuk mengoperasikan hotel yang memberikan hasil bagi pemilik, tamu, dan tim.",
+      "imageAlt": "J&B Rooms Pramuka, properti pertama perusahaan"
+    },
+    "vision": {
+      "label": "Visi & Misi",
+      "visionTitle": "Visi",
+      "vision": "Menjadi perusahaan manajemen hotel terpercaya yang dipilih karena menghadirkan solusi lebih baik untuk meningkatkan profitabilitas properti.",
+      "missionTitle": "Misi",
+      "pillars": {
+        "owner": {
+          "title": "Nilai Bagi Pemilik",
+          "body": "Profitabilitas berkelanjutan bagi pemilik properti."
+        },
+        "guest": {
+          "title": "Pengalaman Tamu",
+          "body": "Layanan terbaik bagi tamu hotel."
+        },
+        "people": {
+          "title": "Pengembangan SDM",
+          "body": "Tim perhotelan yang andal, terampil, dan profesional."
+        }
+      }
+    },
+    "leadership": {
+      "label": "Jajaran Pimpinan",
+      "headline": "Tim di balik J&B Rooms",
+      "carouselLabel": "Tim pimpinan",
+      "photoAlt": "Potret {name}, {role}"
+    },
+    "why": {
+      "label": "Mengapa J&B Rooms",
+      "headline": "Lima alasan pemilik properti bermitra dengan kami"
+    }
+  },
+  "services": {
+    "hero": {
+      "label": "Layanan",
+      "headline": "Semua yang dibutuhkan hotel Anda untuk berkinerja",
+      "imageAlt": "Kamar hotel yang disiapkan tim operasional J&B Rooms"
+    },
+    "subnavLabel": "Layanan di halaman ini",
+    "imageAlt": "{service} di properti J&B Rooms",
+    "cta": {
+      "headline": "Siap melihat apa yang bisa kami lakukan untuk properti Anda?",
+      "button": "Diskusikan Properti Anda"
+    }
+  },
+  "portfolio": {
+    "hero": {
+      "label": "Portofolio Kami",
+      "headline": "Terus bertumbuh di Jakarta dan sekitarnya",
+      "imageAlt": "Tampak luar hotel J&B Rooms"
+    },
+    "current": {
+      "label": "Properti Saat Ini",
+      "headline": "{count} properti. {rooms} kamar.",
+      "filterLabel": "Filter properti berdasarkan wilayah",
+      "empty": "Belum ada properti di wilayah ini.",
+      "results": "{count} properti ditampilkan"
+    },
+    "timeline": {
+      "label": "Perjalanan Pengembangan",
+      "headline": "Tahun demi tahun",
+      "hint": "Geser atau gulir untuk menjelajah"
+    },
+    "upcoming": {
+      "label": "Proyek Berjalan & Mendatang",
+      "headline": "Selanjutnya",
+      "featureLabel": "Proyek berjalan",
+      "figuresTitle": "Angka ilustrasi / proyeksi: J&B Rooms BNR",
+      "rooms": "Kamar",
+      "occupancy": "Proyeksi okupansi tahun ke-1",
+      "asp": "Rata-rata harga jual",
+      "gross": "Proyeksi pendapatan kotor tahun ke-1",
+      "net": "Proyeksi laba bersih pemilik tahun ke-1",
+      "million": "Rp{value} juta",
+      "disclaimer": "Disclaimer: angka-angka ini merupakan proyeksi konservatif untuk ilustrasi, bukan jaminan hasil. Hasil aktual bergantung pada kondisi pasar, okupansi, dan kinerja operasional.",
+      "pipelineTitle": "Dalam pengembangan",
+      "cta": "Tanyakan proyek ini"
+    }
+  },
+  "partner": {
+    "hero": {
+      "label": "Bermitra Dengan Kami",
+      "headline": "Bermitra dengan J&B Rooms",
+      "imageAlt": "Pemilik properti dan tim J&B Rooms meninjau hotel"
+    },
+    "models": {
+      "label": "Model Kerja Sama",
+      "headline": "Model manajemen yang dirancang sesuai properti Anda.",
+      "intro": "Setiap properti dan setiap pemilik berbeda. Pilih struktur kemitraan yang sesuai dengan tujuan Anda — dari pendapatan bulanan yang dapat diprediksi hingga ikut menikmati hasil seiring kinerja meningkat.",
+      "bestFor": "Cocok untuk",
+      "ask": "Tanyakan Model Ini",
+      "readMore": "Lihat model {number}"
+    },
+    "comparison": {
+      "label": "Perbandingan",
+      "headline": "Sekilas",
+      "caption": "Perbandingan indikatif ketiga model kerja sama. Ketentuan akhir bergantung pada perjanjian untuk setiap properti.",
+      "model": "Model",
+      "incomeStability": "Stabilitas pendapatan",
+      "upsidePotential": "Potensi kenaikan hasil",
+      "riskToOwner": "Risiko bagi pemilik"
+    },
+    "ctaBand": {
+      "headline": "Mari membangun perhotelan yang lebih baik bersama",
+      "button": "Diskusikan Properti Anda"
+    }
+  },
+  "contact": {
+    "hero": {
+      "label": "Kontak",
+      "headline": "Mari bicara.",
+      "copy": "Apakah Anda pemilik properti yang mencari mitra manajemen hotel berpengalaman? Hubungi tim kami langsung melalui WhatsApp dan mari diskusikan bagaimana J&B Rooms dapat membantu mengembangkan, mengoperasikan, dan meningkatkan kinerja properti Anda."
+    },
+    "whatsappLabel": "WhatsApp",
+    "mainCta": "Chat Via WhatsApp",
+    "copyNumber": "Salin nomor WhatsApp",
+    "copied": "Tersalin",
+    "copiedDescription": "Nomor WhatsApp telah disalin.",
+    "copyFailed": "Gagal menyalin. Silakan salin nomor secara manual.",
+    "qrTitle": "Pindai untuk chat",
+    "qrHint": "Pindai dengan kamera ponsel untuk membuka WhatsApp.",
+    "qrAlt": "Kode QR menuju chat WhatsApp J&B Rooms",
+    "quickStart": {
+      "label": "Mulai cepat",
+      "headline": "Apa yang ingin Anda diskusikan?",
+      "partnership": "Kemitraan Properti",
+      "booking": "Tamu / Pemesanan Kamar",
+      "careers": "Karier",
+      "other": "Lainnya"
+    },
+    "hours": {
+      "label": "Jam balasan WhatsApp",
+      "value": "Sen–Sab, 09.00–18.00 WIB"
+    },
+    "office": {
+      "label": "Kantor pusat",
+      "directions": "Petunjuk Arah",
+      "mapTitle": "Peta lokasi kantor pusat J&B Rooms di Jl. Pramuka, Jakarta Timur"
+    },
+    "secondary": {
+      "label": "Cara lain menghubungi kami",
+      "email": "Email",
+      "phone": "Telepon",
+      "instagram": "Instagram",
+      "linkedin": "LinkedIn"
+    }
+  },
+  "footer": {
+    "tagline": "Manajemen hotel yang menciptakan nilai berkelanjutan bagi pemilik, tamu, dan tim.",
+    "sitemap": "Peta situs",
+    "contact": "Kontak",
+    "follow": "Ikuti kami",
+    "rights": "© {year} J&B Rooms. Hak cipta dilindungi.",
+    "language": "Bahasa"
+  },
+  "whatsapp": {
+    "floatingLabel": "Chat dengan J&B Rooms via WhatsApp",
+    "opensInNewTab": "(membuka WhatsApp di tab baru)",
+    "messages": {
+      "general": "Halo J&B Rooms, saya ingin mengetahui lebih lanjut tentang layanan manajemen hotel Anda.",
+      "partnership": "Halo J&B Rooms, saya memiliki properti dan tertarik untuk mendiskusikan kerja sama manajemen hotel.",
+      "booking": "Halo J&B Rooms, saya ingin bertanya tentang pemesanan kamar.",
+      "careers": "Halo J&B Rooms, saya tertarik dengan peluang karier di J&B Rooms.",
+      "other": "Halo J&B Rooms, saya ingin bertanya tentang...",
+      "model-fixed-net-income": "Halo J&B Rooms, saya tertarik dengan model kerja sama Fixed Net Income.",
+      "model-fixed-gross-percentage": "Halo J&B Rooms, saya tertarik dengan model kerja sama Fixed Gross Percentage.",
+      "model-profit-share": "Halo J&B Rooms, saya tertarik dengan model kerja sama Bagi Hasil (Profit Share).",
+      "project-bnr": "Halo J&B Rooms, saya ingin mengetahui lebih lanjut tentang proyek J&B Rooms BNR (Bogor)."
+    }
+  },
+  "notFound": {
+    "label": "404",
+    "headline": "Halaman ini sudah check-out.",
+    "body": "Halaman yang Anda cari tidak ada atau telah dipindahkan.",
+    "cta": "Kembali ke beranda"
+  }
+}

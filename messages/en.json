@@ -1,0 +1,331 @@
+{
+  "meta": {
+    "siteName": "J&B Rooms",
+    "tagline": "Hotel management that creates sustainable value.",
+    "home": {
+      "title": "J&B Rooms — Hotel Management Company in Jakarta",
+      "description": "J&B Rooms is a Jakarta-based hotel management company delivering sustainable profitability for property owners, exceptional service for guests and professional hospitality teams."
+    },
+    "about": {
+      "title": "About J&B Rooms",
+      "description": "Founded in Jakarta in 2019, J&B Rooms has grown from a single property into a multi-location hotel management portfolio. Meet our vision, mission and leadership."
+    },
+    "services": {
+      "title": "Hotel Management Services",
+      "description": "Hotel management, operations, revenue management, OTA management and people management — everything your property needs to perform."
+    },
+    "portfolio": {
+      "title": "Our Portfolio",
+      "description": "Explore the hotels J&B Rooms manages across Jakarta, Greater Jakarta and beyond, our development timeline and upcoming projects."
+    },
+    "partner": {
+      "title": "Partner With Us — Management Models",
+      "description": "Fixed Net Income, Fixed Gross Percentage or Profit Share: choose a hotel management model built around your property."
+    },
+    "contact": {
+      "title": "Contact — Chat With Us on WhatsApp",
+      "description": "Property owner looking for a hotel management partner? Chat with the J&B Rooms team directly on WhatsApp."
+    },
+    "notFound": {
+      "title": "Page not found"
+    }
+  },
+  "nav": {
+    "skipToContent": "Skip to content",
+    "home": "Home",
+    "about": "About",
+    "services": "Services",
+    "portfolio": "Our Portfolio",
+    "partner": "Partner With Us",
+    "contact": "Contact",
+    "partnerCta": "Partner With Us",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "mainNavigation": "Main navigation",
+    "language": "Language",
+    "switchLanguage": "Switch language to {language}",
+    "goToPage": "Go to {page}",
+    "homeLink": "J&B Rooms home",
+    "sections": {
+      "about": "About J&B Rooms",
+      "vision-mission": "Vision & Mission",
+      "leadership": "Leadership",
+      "why-jb-rooms": "Why J&B Rooms",
+      "hotel-management": "Hotel Management",
+      "operations": "Operations",
+      "revenue-management": "Revenue Management",
+      "ota-management": "OTA Management",
+      "people-management": "People Management",
+      "current-properties": "Current Properties",
+      "timeline": "Development Timeline",
+      "upcoming-projects": "Current & Upcoming Projects",
+      "management-models": "Management Models",
+      "fixed-net-income": "Fixed Net Income",
+      "fixed-gross-percentage": "Fixed Gross Percentage",
+      "profit-share": "Profit Share",
+      "whatsapp": "Chat on WhatsApp",
+      "office": "Head Office"
+    },
+    "megaIntro": {
+      "about": "Our story, our people and why owners choose us.",
+      "services": "Everything your hotel needs to perform.",
+      "portfolio": "The hotels we manage and what’s coming next.",
+      "partner": "Three management models, built around your property.",
+      "contact": "Talk to our team directly on WhatsApp."
+    },
+    "submenu": "{page} submenu"
+  },
+  "common": {
+    "rooms": "{count, plural, one {# room} other {# rooms}}",
+    "roomsLabel": "Rooms",
+    "previous": "Previous",
+    "next": "Next",
+    "scrollDown": "Scroll down",
+    "launch": "Launch {year}",
+    "opened": "Since {year}",
+    "status": {
+      "live": "Live",
+      "upcoming": "Upcoming",
+      "tbc": "TBC",
+      "current": "Current project"
+    },
+    "regions": {
+      "all": "All",
+      "jakarta": "Jakarta",
+      "greater-jakarta": "Greater Jakarta / West Java",
+      "outside-jakarta": "Outside Jakarta"
+    },
+    "levels": {
+      "low": "Low",
+      "medium": "Medium",
+      "high": "High"
+    },
+    "placeholderImage": "Placeholder photo of {name}"
+  },
+  "home": {
+    "hero": {
+      "label": "Hotel management · Jakarta",
+      "headline": "Hotel management that creates sustainable value",
+      "subtext": "J&B Rooms is a hotel management company focused on delivering sustainable profitability for property owners, exceptional service for hotel guests, and developing reliable and professional hospitality teams.",
+      "primaryCta": "Partner With Us",
+      "secondaryCta": "Explore Our Properties",
+      "imageAlt": "Hotel building managed by J&B Rooms at dusk"
+    },
+    "stats": {
+      "label": "J&B Rooms in numbers",
+      "established": "Established",
+      "properties": "Properties",
+      "rooms": "Rooms, operating & pipeline",
+      "liveRooms": "{count} rooms live today",
+      "years": "Years of hotel management since {year}"
+    },
+    "why": {
+      "label": "Why J&B Rooms",
+      "headline": "Built on trust. Run on performance.",
+      "cta": "All reasons to partner with us"
+    },
+    "featured": {
+      "label": "Our Portfolio",
+      "headline": "Properties we manage",
+      "cta": "View full portfolio",
+      "carouselLabel": "Featured properties"
+    },
+    "models": {
+      "label": "Partner With Us",
+      "headline": "Three ways to work together",
+      "cta": "Compare management models"
+    },
+    "ctaBand": {
+      "headline": "Have a property? Let’s discuss the right management model.",
+      "cta": "Talk To Our Team"
+    }
+  },
+  "about": {
+    "hero": {
+      "label": "About J&B Rooms",
+      "headline": "Built in Jakarta. Since 2019.",
+      "imageAlt": "Hotel lobby managed by J&B Rooms"
+    },
+    "story": {
+      "label": "About J&B Rooms",
+      "headline": "From 9 rooms to a multi-location portfolio",
+      "p1": "J&B Rooms was founded in 2019 by Hie Yenny Kristina. It started with a single property: J&B Rooms Pramuka, which opened with 9 rooms.",
+      "p2": "Since then, J&B Rooms has grown into a multi-location hotel management portfolio across Jakarta, Greater Jakarta and beyond — partnering with property owners to operate hotels that perform for owners, guests and teams alike.",
+      "imageAlt": "J&B Rooms Pramuka, the company’s first property"
+    },
+    "vision": {
+      "label": "Vision & Mission",
+      "visionTitle": "Vision",
+      "vision": "To become a trusted hotel management company, chosen for delivering better solutions to improve property profitability.",
+      "missionTitle": "Mission",
+      "pillars": {
+        "owner": {
+          "title": "Owner Value",
+          "body": "Sustainable profitability for property owners."
+        },
+        "guest": {
+          "title": "Guest Experience",
+          "body": "The best possible service to hotel guests."
+        },
+        "people": {
+          "title": "People Development",
+          "body": "Reliable, skilled and professional hospitality teams."
+        }
+      }
+    },
+    "leadership": {
+      "label": "Leadership",
+      "headline": "The team behind J&B Rooms",
+      "carouselLabel": "Leadership team",
+      "photoAlt": "Portrait of {name}, {role}"
+    },
+    "why": {
+      "label": "Why J&B Rooms",
+      "headline": "Five reasons owners partner with us"
+    }
+  },
+  "services": {
+    "hero": {
+      "label": "Services",
+      "headline": "Everything your hotel needs to perform",
+      "imageAlt": "Hotel room prepared by the J&B Rooms operations team"
+    },
+    "subnavLabel": "Services on this page",
+    "imageAlt": "{service} at a J&B Rooms property",
+    "cta": {
+      "headline": "Ready to see what we can do for your property?",
+      "button": "Discuss Your Property"
+    }
+  },
+  "portfolio": {
+    "hero": {
+      "label": "Our Portfolio",
+      "headline": "Growing across Jakarta and beyond",
+      "imageAlt": "Exterior of a J&B Rooms hotel"
+    },
+    "current": {
+      "label": "Current Properties",
+      "headline": "{count} properties. {rooms} rooms.",
+      "filterLabel": "Filter properties by region",
+      "empty": "No properties in this region yet.",
+      "results": "{count, plural, one {# property} other {# properties}} shown"
+    },
+    "timeline": {
+      "label": "Development Timeline",
+      "headline": "Year by year",
+      "hint": "Drag or scroll to explore"
+    },
+    "upcoming": {
+      "label": "Current & Upcoming Projects",
+      "headline": "What’s next",
+      "featureLabel": "Current project",
+      "figuresTitle": "Illustrative / projected figures: J&B Rooms BNR",
+      "rooms": "Rooms",
+      "occupancy": "Year 1 projected occupancy",
+      "asp": "Average selling price",
+      "gross": "Projected Year 1 gross revenue",
+      "net": "Projected Year 1 owner net profit",
+      "million": "Rp{value} million",
+      "disclaimer": "Disclaimer: these are conservative projections for illustration only, not guaranteed returns. Actual results depend on market conditions, occupancy and operating performance.",
+      "pipelineTitle": "In the pipeline",
+      "cta": "Ask about this project"
+    }
+  },
+  "partner": {
+    "hero": {
+      "label": "Partner With Us",
+      "headline": "Partner with J&B Rooms",
+      "imageAlt": "Property owner and J&B Rooms team reviewing a hotel"
+    },
+    "models": {
+      "label": "Management Models",
+      "headline": "A management model built around your property.",
+      "intro": "Every property and every owner is different. Choose the partnership structure that matches your goals — from predictable monthly income to sharing in the upside as performance grows.",
+      "bestFor": "Best for",
+      "ask": "Ask About This Model",
+      "readMore": "Explore model {number}"
+    },
+    "comparison": {
+      "label": "Compare",
+      "headline": "At a glance",
+      "caption": "Indicative comparison of the three management models. Final terms depend on the agreement for each property.",
+      "model": "Model",
+      "incomeStability": "Income stability",
+      "upsidePotential": "Upside potential",
+      "riskToOwner": "Risk to owner"
+    },
+    "ctaBand": {
+      "headline": "Let’s build better hospitality together",
+      "button": "Discuss Your Property"
+    }
+  },
+  "contact": {
+    "hero": {
+      "label": "Contact",
+      "headline": "Let’s talk.",
+      "copy": "Are you a property owner looking for an experienced hotel management partner? Chat with our team directly on WhatsApp and let’s discuss how J&B Rooms can help develop, operate and improve the performance of your property."
+    },
+    "whatsappLabel": "WhatsApp",
+    "mainCta": "Chat On WhatsApp",
+    "copyNumber": "Copy WhatsApp number",
+    "copied": "Copied",
+    "copiedDescription": "WhatsApp number copied to clipboard.",
+    "copyFailed": "Couldn’t copy. Please copy the number manually.",
+    "qrTitle": "Scan to chat",
+    "qrHint": "Scan with your phone camera to open WhatsApp.",
+    "qrAlt": "QR code linking to the J&B Rooms WhatsApp chat",
+    "quickStart": {
+      "label": "Quick start",
+      "headline": "What would you like to talk about?",
+      "partnership": "Property Partnership",
+      "booking": "Guest / Booking Enquiry",
+      "careers": "Careers",
+      "other": "Other"
+    },
+    "hours": {
+      "label": "WhatsApp replies",
+      "value": "Mon–Sat, 09:00–18:00 WIB"
+    },
+    "office": {
+      "label": "Head office",
+      "directions": "Get Directions",
+      "mapTitle": "Map showing the J&B Rooms head office on Jl. Pramuka, Jakarta Timur"
+    },
+    "secondary": {
+      "label": "Other ways to reach us",
+      "email": "Email",
+      "phone": "Phone",
+      "instagram": "Instagram",
+      "linkedin": "LinkedIn"
+    }
+  },
+  "footer": {
+    "tagline": "Hotel management that creates sustainable value for owners, guests and teams.",
+    "sitemap": "Sitemap",
+    "contact": "Contact",
+    "follow": "Follow us",
+    "rights": "© {year} J&B Rooms. All rights reserved.",
+    "language": "Language"
+  },
+  "whatsapp": {
+    "floatingLabel": "Chat with J&B Rooms on WhatsApp",
+    "opensInNewTab": "(opens WhatsApp in a new tab)",
+    "messages": {
+      "general": "Hello J&B Rooms, I would like to know more about your hotel management services.",
+      "partnership": "Hello J&B Rooms, I own a property and I’m interested in discussing a hotel management partnership.",
+      "booking": "Hello J&B Rooms, I would like to ask about a room booking.",
+      "careers": "Hello J&B Rooms, I’m interested in career opportunities at J&B Rooms.",
+      "other": "Hello J&B Rooms, I would like to ask about...",
+      "model-fixed-net-income": "Hello J&B Rooms, I’m interested in the Fixed Net Income partnership model.",
+      "model-fixed-gross-percentage": "Hello J&B Rooms, I’m interested in the Fixed Gross Percentage partnership model.",
+      "model-profit-share": "Hello J&B Rooms, I’m interested in the Profit Share partnership model.",
+      "project-bnr": "Hello J&B Rooms, I would like to know more about the J&B Rooms BNR (Bogor) project."
+    }
+  },
+  "notFound": {
+    "label": "404",
+    "headline": "This page checked out.",
+    "body": "The page you’re looking for doesn’t exist or has moved.",
+    "cta": "Back to home"
+  }
+}

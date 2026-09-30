@@ -1,0 +1,186 @@
+@import 'tailwindcss';
+
+/* ------------------------------------------------------------------
+   DESIGN TOKENS
+   Monochrome base + ONE accent. Change --brand-accent once J&B Rooms'
+   brand colour is confirmed. TODO(brand): confirm brand colour.
+------------------------------------------------------------------- */
+:root {
+  --brand-accent: #0a5c52; /* deep teal — placeholder accent */
+  --brand-accent-foreground: #ffffff;
+  --header-height: 4rem;
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --header-height: 5rem;
+  }
+}
+
+@theme inline {
+  --color-ink: #000000;
+  --color-paper: #ffffff;
+  --color-mist: #eceff1;
+  --color-steel: #767677;
+  --color-steel-dark: #545455;
+  --color-accent: var(--brand-accent);
+  --color-accent-foreground: var(--brand-accent-foreground);
+
+  --font-display: var(--font-barlow-condensed), 'Arial Narrow', Arial, sans-serif;
+  --font-sans: var(--font-barlow), system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+  --ease-athletic: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --text-hero: clamp(3rem, 8.5vw, 7.5rem);
+  --text-hero--line-height: 0.88;
+  --text-display: clamp(2.5rem, 6vw, 5.5rem);
+  --text-display--line-height: 0.9;
+  --text-headline: clamp(2rem, 4.5vw, 4rem);
+  --text-headline--line-height: 0.92;
+
+  --animate-ken-burns: ken-burns 24s ease-out infinite alternate;
+  --animate-scroll-cue: scroll-cue 1.6s ease-in-out infinite;
+  --animate-pulse-ring: pulse-ring 1.8s var(--ease-athletic) 0.6s 3;
+  --animate-marquee: marquee 40s linear infinite;
+}
+
+@keyframes ken-burns {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.12);
+  }
+}
+
+@keyframes scroll-cue {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(8px);
+  }
+}
+
+@keyframes pulse-ring {
+  0% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.18, 1.6);
+  }
+}
+
+@layer base {
+  *,
+  ::before,
+  ::after {
+    border-radius: 0;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Anchored sections clear the sticky header. */
+  [id] {
+    scroll-margin-top: calc(var(--header-height) + 1rem);
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--brand-accent);
+    outline-offset: 3px;
+  }
+
+  .on-dark :focus-visible,
+  .on-dark:focus-visible {
+    outline-color: #ffffff;
+  }
+
+  ::selection {
+    background: var(--color-ink);
+    color: var(--color-paper);
+  }
+}
+
+@layer components {
+  /* adidas-style "offset border" button: a 1px outline sits offset below-right
+     and snaps into place on hover. */
+  .btn-offset {
+    --offset-color: currentColor;
+    position: relative;
+    isolation: isolate;
+  }
+  .btn-offset::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border: 1px solid var(--offset-color);
+    transform: translate(4px, 4px);
+    transition: transform 0.35s var(--ease-athletic);
+    pointer-events: none;
+    z-index: -1;
+  }
+  .btn-offset:hover::after,
+  .btn-offset:focus-visible::after {
+    transform: translate(0, 0);
+  }
+
+  /* Outlined display type. Stroke colour follows --outline-color (defaults to ink). */
+  .text-outline {
+    color: transparent;
+    -webkit-text-stroke: 1.5px var(--outline-color, var(--color-ink));
+  }
+
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .eyebrow {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.875rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+}
+
+/* Lenis smooth scroll */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis:not(.lenis-autoToggle).lenis-stopped {
+  overflow: clip;
+}
+.lenis [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+}
