@@ -43,16 +43,6 @@ export const properties: Property[] = [
     image: '/images/properties/tomang-hero.jpg',
   },
   {
-    slug: 'gunung-sahari',
-    name: 'Townhouse J&B Rooms Gunung Sahari',
-    rooms: 141,
-    area: 'Jakarta Pusat',
-    region: 'jakarta',
-    status: 'live',
-    launchYear: 2024,
-    image: '/images/properties/gunung-sahari-hero.jpg',
-  },
-  {
     slug: 'jatinegara',
     name: 'J&B Smart Jatinegara',
     rooms: 30,
@@ -68,21 +58,9 @@ export const properties: Property[] = [
     rooms: 30,
     area: 'Jakarta Pusat',
     region: 'jakarta',
-    // TODO(content): launch status/year to be confirmed (timeline lists 2026).
-    status: 'upcoming',
+    status: 'live',
     launchYear: 2026,
-    tbc: true,
     image: '/images/properties/senen-hero.jpg',
-  },
-  {
-    slug: 'benhill',
-    name: 'J&B Rooms Benhill',
-    rooms: 30,
-    area: 'Jakarta Pusat',
-    region: 'jakarta',
-    status: 'upcoming',
-    launchYear: 2027,
-    image: '/images/properties/benhill-hero.jpg',
   },
   {
     slug: 'bekasi',
@@ -110,7 +88,7 @@ export const properties: Property[] = [
     rooms: 27,
     area: 'Cikarang, Bekasi',
     region: 'greater-jakarta',
-    status: 'upcoming',
+    status: 'live',
     launchYear: 2026,
     image: '/images/properties/cikarang-hero.jpg',
   },
@@ -120,7 +98,7 @@ export const properties: Property[] = [
     rooms: 76,
     area: 'Ende, Nusa Tenggara Timur',
     region: 'outside-jakarta',
-    status: 'upcoming',
+    status: 'live',
     launchYear: 2026,
     image: '/images/properties/ende-hero.jpg',
   },
@@ -152,7 +130,7 @@ export const portfolioStats = {
   liveRooms: liveProperties.reduce((sum, p) => sum + p.rooms, 0),
 };
 
-/** Round down to a "marketing" figure, e.g. 564 -> 500, 12 -> 10. */
+/** Round down to a "marketing" figure, e.g. 393 -> 300, 12 -> 10. */
 export function floorToStep(value: number, step: number) {
   return Math.max(step, Math.floor(value / step) * step);
 }

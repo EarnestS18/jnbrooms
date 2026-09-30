@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { toast } from 'sonner';
 
 /** Copy-to-clipboard icon button with a "Copied" toast. */
-export function CopyNumber({ value }: { value: string }) {
+export function CopyNumber({ value, label }: { value: string; label?: string }) {
   const t = useTranslations('contact');
   const [copied, setCopied] = useState(false);
 
@@ -25,8 +25,8 @@ export function CopyNumber({ value }: { value: string }) {
     <button
       type="button"
       onClick={copy}
-      aria-label={t('copyNumber')}
-      title={t('copyNumber')}
+      aria-label={label ?? t('copyNumber')}
+      title={label ?? t('copyNumber')}
       className="flex size-12 shrink-0 items-center justify-center border border-paper/40 transition-colors hover:bg-paper hover:text-ink"
     >
       {copied ? (

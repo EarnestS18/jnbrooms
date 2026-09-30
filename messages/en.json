@@ -219,14 +219,6 @@
       "label": "Current & Upcoming Projects",
       "headline": "What’s next",
       "featureLabel": "Current project",
-      "figuresTitle": "Illustrative / projected figures: J&B Rooms BNR",
-      "rooms": "Rooms",
-      "occupancy": "Year 1 projected occupancy",
-      "asp": "Average selling price",
-      "gross": "Projected Year 1 gross revenue",
-      "net": "Projected Year 1 owner net profit",
-      "million": "Rp{value} million",
-      "disclaimer": "Disclaimer: these are conservative projections for illustration only, not guaranteed returns. Actual results depend on market conditions, occupancy and operating performance.",
       "pipelineTitle": "In the pipeline",
       "cta": "Ask about this project"
     }
@@ -297,7 +289,9 @@
       "phone": "Phone",
       "instagram": "Instagram",
       "linkedin": "LinkedIn"
-    }
+    },
+    "chatWith": "Chat with {name}",
+    "copyNumberOf": "Copy {name}’s WhatsApp number"
   },
   "footer": {
     "tagline": "Hotel management that creates sustainable value for owners, guests and teams.",

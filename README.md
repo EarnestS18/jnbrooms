@@ -33,30 +33,33 @@ npm run dev                  # http://localhost:3000
 
 ## 2. Environment variables
 
-| Variable                       | Required   | Example                     | Notes                                                                      |
-| ------------------------------ | ---------- | --------------------------- | -------------------------------------------------------------------------- |
-| `NEXT_PUBLIC_WHATSAPP_NUMBER`  | **Yes**    | `6281234567890`             | International format: no `+`, no leading `0`, no spaces                    |
-| `NEXT_PUBLIC_WHATSAPP_DISPLAY` | No         | `+62 812-3456-7890`         | Overrides the auto-formatted display number                                |
-| `NEXT_PUBLIC_SITE_URL`         | Yes (prod) | `https://www.jbrooms.co.id` | Canonical URLs, sitemap, Open Graph, JSON-LD. Falls back to the Vercel URL |
-| `NEXT_PUBLIC_GA_ID`            | No         | `G-XXXXXXXXXX`              | Enables GA4 in addition to Vercel Analytics                                |
+| Variable                        | Required   | Example                     | Notes                                                                      |
+| ------------------------------- | ---------- | --------------------------- | -------------------------------------------------------------------------- |
+| `NEXT_PUBLIC_WHATSAPP_NUMBER`   | No         | `628159495520`              | Overrides the primary WhatsApp contact (default: Yenny Kristina)           |
+| `NEXT_PUBLIC_WHATSAPP_NUMBER_2` | No         | `6289620500333`             | Overrides the second WhatsApp contact (default: Aidil Putra)               |
+| `NEXT_PUBLIC_SITE_URL`          | Yes (prod) | `https://www.jbrooms.co.id` | Canonical URLs, sitemap, Open Graph, JSON-LD. Falls back to the Vercel URL |
+| `NEXT_PUBLIC_GA_ID`             | No         | `G-XXXXXXXXXX`              | Enables GA4 in addition to Vercel Analytics                                |
 
-> ⚠️ Until `NEXT_PUBLIC_WHATSAPP_NUMBER` is set, the site uses the deliberately invalid
-> placeholder `6280000000000`, so nobody real gets messaged by mistake.
+WhatsApp numbers use international format: no `+`, no leading `0`, no spaces.
 
-## 3. Changing the WhatsApp number or messages
+## 3. Changing the WhatsApp numbers or messages
 
-- **Number:** set `NEXT_PUBLIC_WHATSAPP_NUMBER` locally in `.env.local` and on Vercel under
-  _Project → Settings → Environment Variables_, then redeploy.
+- **Numbers:** the two WhatsApp contacts are listed in `whatsappContacts` in `config/contact.ts`:
+  **Yenny Kristina** (`+62 815-9495-520`) and **Aidil Putra** (`+62 896-2050-0333`). The first
+  contact is the primary one: every WhatsApp button on the site (floating button, CTA bands,
+  quick-start buttons, model buttons, QR code) opens a chat with that number. The contact page and
+  the footer show both. Edit the list to change names or numbers, or override them without a code
+  change via the environment variables above.
 - **Pre-filled messages:** edit `whatsapp.messages` in `messages/id.json` and `messages/en.json`.
   The keys are the enquiry types: `general`, `partnership`, `booking`, `careers`, `other`,
   `model-fixed-net-income`, `model-fixed-gross-percentage`, `model-profit-share` and `project-bnr`.
   Visitors get the message in the language they are browsing in.
 - **Other contact details** (email, phone, social links, office address, map) are in
   `config/contact.ts`, the single source of truth. Every WhatsApp CTA uses its
-  `getWhatsAppLink(type, locale)` helper.
+  `getWhatsAppLink(type, locale, contact?)` helper.
 
 Every WhatsApp click is tracked as a `whatsapp_click` event with `type` (enquiry type), `page`,
-`placement` (e.g. `hero`, `floating`, `cta-band`) and `locale`.
+`placement` (e.g. `hero`, `floating`, `cta-band`), `locale` and `contact` (`yenny` or `aidil`).
 
 ## 4. Editing content
 
@@ -70,7 +73,7 @@ All content lives in typed data files. Nothing is hardcoded in the page componen
 | Services                          | `data/services.ts`      |
 | Management models + comparison    | `data/models.ts`        |
 | "Why J&B Rooms" cards             | `data/values.ts`        |
-| BNR project + projected figures   | `data/projects.ts`      |
+| BNR current project               | `data/projects.ts`      |
 | UI copy (headings, buttons, meta) | `messages/{id,en}.json` |
 
 Text that needs translating is written as `{ en: '…', id: '…' }` in the data files.
@@ -157,29 +160,25 @@ scripts/               placeholder + blur-data generators
 
 Search the code for `TODO` to find each one.
 
-- [ ] **WhatsApp number** (highest priority): `NEXT_PUBLIC_WHATSAPP_NUMBER`
 - [ ] Pramuka opened with 9 rooms and is now listed at 43: confirm the expansion story
 - [ ] Stariez by J&B Rooms (2021) is in the timeline but not the portfolio: is it still active?
-- [ ] Senen: confirm launch status/year (currently "Upcoming · TBC", 2026)
-- [ ] "500+ rooms" includes pipeline properties (live rooms are shown separately under the stat)
+- [ ] Total rooms now compute to 393 (shown as "300+", including BNR); live rooms are shown separately
 - [ ] Service scope to be confirmed by management (`data/services.ts`)
 - [ ] WhatsApp operating hours (`contact.hours.value` in messages)
 - [ ] Brand colour, logo files, real photography, email, phone, Instagram/LinkedIn URLs
 - [ ] Earnest Surya (CTO): confirm bio
-- [ ] BNR figures: confirm the period (see Assumptions)
 
 ## Assumptions
 
-- **BNR projected figures:** 30 rooms × 80% × Rp180,000 × 30 days = Rp129.6 million. So the
-  "Year 1 gross revenue" figure matches a _monthly_ average in Year 1, not a full-year total. The
-  figures are shown exactly as supplied, under a visible disclaimer. Please confirm the period with
-  management.
+- **Portfolio updates (on request):** Townhouse J&B Rooms Gunung Sahari and J&B Rooms Benhill were
+  removed. Ende, Senen and Cikarang are now operating. J&B Rooms BNR is the only upcoming project,
+  and it is shown **without** projected financial figures.
 - **Areas and regions:** Area names (e.g. Jakarta Timur, Sentul, Bogor) were inferred from the
   property names. BNR (Bogor) is filtered under _Greater Jakarta / West Java_ and Ende under
   _Outside Jakarta_.
 - **Launch years:** These come from the timeline. BNR has no confirmed year (`null`).
 - **Stats bar:** Every figure is computed from `data/properties.ts`. Property count and rooms are
-  rounded down to 10+ and 500+. The fourth stat shows years since 2019.
+  rounded down to the nearest 10 and 100 (currently 10+ and 300+). The fourth stat shows years since 2019.
 - **JSON-LD:** `LodgingBusiness` markup is emitted only for **live** properties, so hotels that
   don't exist yet aren't advertised to search engines.
 - **Model comparison table:** Levels (Low/Medium/High) are indicative and labelled as such. Only

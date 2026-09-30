@@ -1,28 +1,24 @@
 import type { Locale } from '@/i18n/routing';
-import type { ManagementModelId } from '@/types/content';
+import type { Localized, ManagementModelId } from '@/types/content';
 import en from '@/messages/en.json';
 import id from '@/messages/id.json';
 
 /**
  * CONTACT CONFIG — single source of truth for every contact detail on the site.
  * ------------------------------------------------------------------------------
- * WhatsApp number: set NEXT_PUBLIC_WHATSAPP_NUMBER (see .env.example).
+ * WhatsApp contacts are listed below. The FIRST contact is the primary number used by
+ * every WhatsApp CTA (floating button, CTA bands, quick-start buttons, QR code).
+ * Either number can be overridden with NEXT_PUBLIC_WHATSAPP_NUMBER / NEXT_PUBLIC_WHATSAPP_NUMBER_2.
  * Pre-filled WhatsApp messages live in /messages/{id,en}.json under `whatsapp.messages`.
  */
 
-// TODO(launch): HIGHEST PRIORITY — set NEXT_PUBLIC_WHATSAPP_NUMBER to the real number before launch.
-// The fallback below is a deliberately invalid placeholder so no real person is messaged by mistake.
-const PLACEHOLDER_NUMBER = '6280000000000';
-
-function normaliseNumber(raw: string | undefined): string {
+function normaliseNumber(raw: string | undefined, fallback: string): string {
   const digits = (raw ?? '').replace(/\D/g, '');
-  if (!digits) return PLACEHOLDER_NUMBER;
+  if (!digits) return fallback;
   // Accept local formats too: 0812... -> 62812...
   if (digits.startsWith('0')) return `62${digits.slice(1)}`;
   return digits;
 }
-
-const whatsappNumber = normaliseNumber(process.env.NEXT_PUBLIC_WHATSAPP_NUMBER);
 
 /** +62 812-3456-7890 style display format. */
 export function formatWhatsAppDisplay(number: string): string {
@@ -32,13 +28,43 @@ export function formatWhatsAppDisplay(number: string): string {
   return `+62 ${groups.join('-')}`;
 }
 
-export const whatsapp = {
-  /** International format, no "+", no leading 0, no spaces — e.g. 6281234567890 */
-  number: whatsappNumber,
-  display: process.env.NEXT_PUBLIC_WHATSAPP_DISPLAY ?? formatWhatsAppDisplay(whatsappNumber),
-  isPlaceholder: whatsappNumber === PLACEHOLDER_NUMBER,
-  baseUrl: `https://wa.me/${whatsappNumber}`,
-};
+export type WhatsAppContactId = 'yenny' | 'aidil';
+
+export interface WhatsAppContact {
+  id: WhatsAppContactId;
+  name: string;
+  role: Localized;
+  /** International format, no "+", no leading 0, no spaces — e.g. 628159495520 */
+  number: string;
+  display: string;
+  baseUrl: string;
+}
+
+function makeContact(c: Omit<WhatsAppContact, 'display' | 'baseUrl'>): WhatsAppContact {
+  return { ...c, display: formatWhatsAppDisplay(c.number), baseUrl: `https://wa.me/${c.number}` };
+}
+
+export const whatsappContacts: WhatsAppContact[] = [
+  makeContact({
+    id: 'yenny',
+    name: 'Yenny Kristina',
+    role: { en: 'CEO / Founder', id: 'CEO / Pendiri' },
+    number: normaliseNumber(process.env.NEXT_PUBLIC_WHATSAPP_NUMBER, '628159495520'),
+  }),
+  makeContact({
+    id: 'aidil',
+    name: 'Aidil Putra',
+    role: { en: 'COO', id: 'COO' },
+    number: normaliseNumber(process.env.NEXT_PUBLIC_WHATSAPP_NUMBER_2, '6289620500333'),
+  }),
+];
+
+/** Primary WhatsApp contact — used by every CTA unless a specific contact is passed. */
+export const whatsapp = whatsappContacts[0];
+
+export function getWhatsAppContact(id: WhatsAppContactId = whatsapp.id): WhatsAppContact {
+  return whatsappContacts.find((c) => c.id === id) ?? whatsapp;
+}
 
 export type ModelEnquiryType = `model-${ManagementModelId}`;
 export type WhatsAppEnquiryType =
@@ -58,9 +84,14 @@ export function getWhatsAppMessage(type: WhatsAppEnquiryType, locale: Locale): s
  * Build a click-to-chat link. Every WhatsApp CTA on the site uses this helper.
  * wa.me opens the app on mobile and WhatsApp Web/Desktop on desktop.
  */
-export function getWhatsAppLink(type: WhatsAppEnquiryType, locale: Locale): string {
+export function getWhatsAppLink(
+  type: WhatsAppEnquiryType,
+  locale: Locale,
+  contactId: WhatsAppContactId = whatsapp.id,
+): string {
+  const { baseUrl } = getWhatsAppContact(contactId);
   const text = getWhatsAppMessage(type, locale);
-  return text ? `${whatsapp.baseUrl}?text=${encodeURIComponent(text)}` : whatsapp.baseUrl;
+  return text ? `${baseUrl}?text=${encodeURIComponent(text)}` : baseUrl;
 }
 
 export const contact = {

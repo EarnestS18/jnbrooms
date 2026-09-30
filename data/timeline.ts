@@ -11,6 +11,6 @@ export const timeline: TimelineEntry[] = [
   { year: 2021, items: ['Stariez by J&B Rooms'] },
   { year: 2022, items: ['J&B Rooms Bekasi', 'J&B Rooms Tomang'] },
   { year: 2023, items: ['J&B Rooms Sentul'] },
-  { year: 2024, items: ['J&B Rooms Gunung Sahari', 'J&B Smart Jatinegara'] },
+  { year: 2024, items: ['J&B Smart Jatinegara'] },
   { year: 2026, items: ['J&B Rooms Ende', 'J&B Rooms Cikarang', 'J&B Rooms Senen'] },
 ];

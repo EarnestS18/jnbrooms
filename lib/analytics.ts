@@ -16,6 +16,8 @@ export interface WhatsAppClickEvent {
   /** Where on the page, e.g. header, hero, floating, cta-band */
   placement: string;
   locale: string;
+  /** Which WhatsApp contact was opened, e.g. yenny, aidil */
+  contact: string;
 }
 
 /** Every WhatsApp click is tracked in Vercel Analytics and (if configured) GA4. */
@@ -32,6 +34,7 @@ export function trackWhatsAppClick(event: WhatsAppClickEvent) {
       page_path: payload.page,
       placement: payload.placement,
       language: payload.locale,
+      contact: payload.contact,
     });
   }
 }

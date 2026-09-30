@@ -1,4 +1,4 @@
-import { contact } from '@/config/contact';
+import { contact, whatsappContacts } from '@/config/contact';
 import { founder, foundingYear, siteName, siteUrl } from '@/config/site';
 import type { Locale } from '@/i18n/routing';
 import type { Property } from '@/types/content';
@@ -21,14 +21,13 @@ export function organizationJsonLd(locale: Locale, description: string) {
       addressRegion: contact.office.region,
       addressCountry: contact.office.country,
     },
-    contactPoint: [
-      {
-        '@type': 'ContactPoint',
-        contactType: 'customer service',
-        telephone: `+${contact.whatsapp.number}`,
-        availableLanguage: ['Indonesian', 'English'],
-      },
-    ],
+    contactPoint: whatsappContacts.map((c) => ({
+      '@type': 'ContactPoint',
+      contactType: 'customer service',
+      name: c.name,
+      telephone: `+${c.number}`,
+      availableLanguage: ['Indonesian', 'English'],
+    })),
     sameAs: [contact.social.instagram, contact.social.linkedin],
   };
 }

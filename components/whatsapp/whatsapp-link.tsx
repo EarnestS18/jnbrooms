@@ -1,7 +1,12 @@
 'use client';
 
 import { useLocale, useTranslations } from 'next-intl';
-import { getWhatsAppLink, type WhatsAppEnquiryType } from '@/config/contact';
+import {
+  getWhatsAppLink,
+  whatsapp,
+  type WhatsAppContactId,
+  type WhatsAppEnquiryType,
+} from '@/config/contact';
 import { usePathname } from '@/i18n/navigation';
 import { trackWhatsAppClick } from '@/lib/analytics';
 import { buttonVariants, ButtonArrow, type ButtonVariantProps } from '@/components/ui/button';
@@ -16,24 +21,33 @@ export interface WhatsAppLinkProps extends Omit<
   type: WhatsAppEnquiryType;
   /** Where on the page this CTA lives, for analytics (e.g. "hero", "cta-band"). */
   placement: string;
+  /** Which WhatsApp contact to open. Defaults to the primary contact. */
+  contact?: WhatsAppContactId;
 }
 
 /**
  * Click-to-chat link. Opens wa.me in a new tab (the app on mobile, WhatsApp Web/Desktop
  * on desktop) and records a `whatsapp_click` analytics event.
  */
-export function WhatsAppLink({ type, placement, onClick, children, ...props }: WhatsAppLinkProps) {
+export function WhatsAppLink({
+  type,
+  placement,
+  contact = whatsapp.id,
+  onClick,
+  children,
+  ...props
+}: WhatsAppLinkProps) {
   const locale = useLocale();
   const pathname = usePathname();
   const t = useTranslations('whatsapp');
 
   return (
     <a
-      href={getWhatsAppLink(type, locale)}
+      href={getWhatsAppLink(type, locale, contact)}
       target="_blank"
       rel="noopener noreferrer"
       onClick={(e) => {
-        trackWhatsAppClick({ type, page: pathname, placement, locale });
+        trackWhatsAppClick({ type, page: pathname, placement, locale, contact });
         onClick?.(e);
       }}
       {...props}

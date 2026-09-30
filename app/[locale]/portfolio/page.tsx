@@ -31,21 +31,7 @@ export default async function PortfolioPage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations('portfolio');
-
-  const nf = new Intl.NumberFormat(locale === 'id' ? 'id-ID' : 'en-US', {
-    maximumFractionDigits: 2,
-  });
-  const rupiah = (v: number) => `Rp${nf.format(v)}`;
-  const million = (v: number) => t('upcoming.million', { value: nf.format(v / 1_000_000) });
-  const f = bnrProject.figures;
-
-  const figures = [
-    { label: t('upcoming.rooms'), value: String(f.rooms) },
-    { label: t('upcoming.occupancy'), value: `${Math.round(f.occupancyYear1 * 100)}%` },
-    { label: t('upcoming.asp'), value: rupiah(f.averageSellingPrice) },
-    { label: t('upcoming.gross'), value: million(f.grossRevenueYear1) },
-    { label: t('upcoming.net'), value: million(f.ownerNetProfitYear1) },
-  ];
+  const tc = await getTranslations('common');
 
   const pipeline = upcomingProperties.filter((p) => !p.currentProject);
 
@@ -127,26 +113,11 @@ export default async function PortfolioPage({ params }: Props) {
                 </p>
               </Reveal>
 
-              <Reveal delay={0.1} className="mt-10 border border-paper/30">
-                <h4 className="eyebrow border-b border-paper/30 bg-paper px-5 py-3 text-ink">
-                  {t('upcoming.figuresTitle')}
-                </h4>
-                <dl className="grid grid-cols-2 gap-px bg-paper/20">
-                  {figures.map((fig, i) => (
-                    <div
-                      key={fig.label}
-                      className={i === figures.length - 1 ? 'col-span-2 bg-ink p-5' : 'bg-ink p-5'}
-                    >
-                      <dt className="text-sm text-paper/75">{fig.label}</dt>
-                      <dd className="mt-1 font-display text-3xl font-extrabold lg:text-4xl">
-                        {fig.value}
-                      </dd>
-                    </div>
-                  ))}
-                </dl>
-                <p className="border-t border-paper/30 px-5 py-4 text-sm text-paper/80">
-                  {t('upcoming.disclaimer')}
+              <Reveal delay={0.1} className="mt-10 border-t border-paper/30 pt-6">
+                <p className="font-display text-5xl leading-none font-extrabold">
+                  {bnrProject.rooms}
                 </p>
+                <p className="eyebrow mt-2 text-paper/75">{tc('roomsLabel')}</p>
               </Reveal>
 
               <Reveal delay={0.2} className="mt-10">

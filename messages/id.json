@@ -219,14 +219,6 @@
       "label": "Proyek Berjalan & Mendatang",
       "headline": "Selanjutnya",
       "featureLabel": "Proyek berjalan",
-      "figuresTitle": "Angka ilustrasi / proyeksi: J&B Rooms BNR",
-      "rooms": "Kamar",
-      "occupancy": "Proyeksi okupansi tahun ke-1",
-      "asp": "Rata-rata harga jual",
-      "gross": "Proyeksi pendapatan kotor tahun ke-1",
-      "net": "Proyeksi laba bersih pemilik tahun ke-1",
-      "million": "Rp{value} juta",
-      "disclaimer": "Disclaimer: angka-angka ini merupakan proyeksi konservatif untuk ilustrasi, bukan jaminan hasil. Hasil aktual bergantung pada kondisi pasar, okupansi, dan kinerja operasional.",
       "pipelineTitle": "Dalam pengembangan",
       "cta": "Tanyakan proyek ini"
     }
@@ -297,7 +289,9 @@
       "phone": "Telepon",
       "instagram": "Instagram",
       "linkedin": "LinkedIn"
-    }
+    },
+    "chatWith": "Chat dengan {name}",
+    "copyNumberOf": "Salin nomor WhatsApp {name}"
   },
   "footer": {
     "tagline": "Manajemen hotel yang menciptakan nilai berkelanjutan bagi pemilik, tamu, dan tim.",

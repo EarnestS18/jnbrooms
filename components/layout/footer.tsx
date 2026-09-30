@@ -3,7 +3,7 @@ import { Logo } from '@/components/icons/logo';
 import { InstagramIcon, LinkedInIcon, WhatsAppIcon } from '@/components/icons/brand-icons';
 import { LanguageToggle } from '@/components/layout/language-toggle';
 import { WhatsAppLink } from '@/components/whatsapp/whatsapp-link';
-import { contact } from '@/config/contact';
+import { contact, whatsappContacts } from '@/config/contact';
 import { navigation } from '@/config/navigation';
 import { Link } from '@/i18n/navigation';
 
@@ -23,14 +23,26 @@ export function Footer() {
             <p className="mt-5 max-w-sm text-paper/75">{t('tagline')}</p>
 
             <div className="mt-10 space-y-5">
-              <WhatsAppLink
-                type="general"
-                placement="footer"
-                className="group inline-flex items-center gap-3 font-display text-3xl font-bold tracking-wide hover:text-paper/75"
-              >
-                <WhatsAppIcon className="size-7" />
-                <span>{contact.whatsapp.display}</span>
-              </WhatsAppLink>
+              <ul className="space-y-4">
+                {whatsappContacts.map((c) => (
+                  <li key={c.id}>
+                    <WhatsAppLink
+                      type="general"
+                      placement="footer"
+                      contact={c.id}
+                      className="group inline-flex items-center gap-3 hover:text-paper/75"
+                    >
+                      <WhatsAppIcon className="size-6 shrink-0" />
+                      <span>
+                        <span className="block font-display text-2xl leading-none font-bold tracking-wide">
+                          {c.display}
+                        </span>
+                        <span className="mt-1 block text-sm text-paper/70">{c.name}</span>
+                      </span>
+                    </WhatsAppLink>
+                  </li>
+                ))}
+              </ul>
               <address className="text-paper/75 not-italic">
                 {contact.office.name}
                 <br />

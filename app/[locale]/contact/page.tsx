@@ -10,8 +10,15 @@ import { SectionHeading } from '@/components/sections/section-heading';
 import { ButtonArrow } from '@/components/ui/button';
 import { Container } from '@/components/ui/container';
 import { WhatsAppButton, WhatsAppLink } from '@/components/whatsapp/whatsapp-link';
-import { contact, getWhatsAppLink, type WhatsAppEnquiryType } from '@/config/contact';
+import {
+  contact,
+  getWhatsAppLink,
+  whatsapp,
+  whatsappContacts,
+  type WhatsAppEnquiryType,
+} from '@/config/contact';
 import type { Locale } from '@/i18n/routing';
+import { t as pick } from '@/lib/content';
 import { pageMetadata } from '@/lib/seo';
 
 type Props = { params: Promise<{ locale: Locale }> };
@@ -65,38 +72,49 @@ export default async function ContactPage({ params }: Props) {
             {t('hero.copy')}
           </Reveal>
 
-          {/* TODO(launch): replace the placeholder WhatsApp number via NEXT_PUBLIC_WHATSAPP_NUMBER. */}
           <div className="mt-14 grid gap-12 border-t border-paper/20 pt-12 lg:grid-cols-12">
             <div className="lg:col-span-8">
-              <p className="eyebrow flex items-center gap-2 text-paper/75">
-                <WhatsAppIcon className="size-4" /> {t('whatsappLabel')}
-              </p>
-              <div className="mt-4 flex flex-wrap items-center gap-4">
-                <MaskText
-                  as="p"
-                  onMount
-                  delay={0.6}
-                  text={contact.whatsapp.display}
-                  className="font-display text-[clamp(2.5rem,7vw,6rem)] leading-none font-extrabold tracking-tight"
-                />
-                <CopyNumber value={contact.whatsapp.display} />
-              </div>
-
-              <Reveal onMount delay={0.8} className="relative mt-10 inline-block">
-                <span
-                  aria-hidden="true"
-                  className="pointer-events-none absolute inset-0 border-2 border-paper opacity-0 motion-safe:animate-pulse-ring"
-                />
-                <WhatsAppButton
-                  type="general"
-                  placement="contact-main"
-                  variant="inverse"
-                  size="lg"
-                  icon
-                >
-                  {t('mainCta')}
-                </WhatsAppButton>
-              </Reveal>
+              <ul className="space-y-12">
+                {whatsappContacts.map((c, i) => (
+                  <li key={c.id}>
+                    <p className="eyebrow flex flex-wrap items-center gap-2 text-paper/75">
+                      <WhatsAppIcon className="size-4" /> {t('whatsappLabel')}
+                      <span aria-hidden="true">·</span>
+                      <span className="text-paper">{c.name}</span>
+                      <span aria-hidden="true">·</span>
+                      {pick(c.role, locale)}
+                    </p>
+                    <div className="mt-4 flex flex-wrap items-center gap-4">
+                      <MaskText
+                        as="p"
+                        onMount
+                        delay={0.6 + i * 0.15}
+                        text={c.display}
+                        className="font-display text-[clamp(2.25rem,6vw,5rem)] leading-none font-extrabold tracking-tight"
+                      />
+                      <CopyNumber value={c.display} label={t('copyNumberOf', { name: c.name })} />
+                    </div>
+                    <Reveal onMount delay={0.8 + i * 0.15} className="relative mt-6 inline-block">
+                      {i === 0 ? (
+                        <span
+                          aria-hidden="true"
+                          className="pointer-events-none absolute inset-0 border-2 border-paper opacity-0 motion-safe:animate-pulse-ring"
+                        />
+                      ) : null}
+                      <WhatsAppButton
+                        type="general"
+                        contact={c.id}
+                        placement={i === 0 ? 'contact-main' : 'contact-secondary'}
+                        variant={i === 0 ? 'inverse' : 'outline-inverse'}
+                        size="lg"
+                        icon
+                      >
+                        {t('chatWith', { name: c.name.split(' ')[0] })}
+                      </WhatsAppButton>
+                    </Reveal>
+                  </li>
+                ))}
+              </ul>
 
               <p className="mt-10 flex items-center gap-2 text-paper/80">
                 <Clock className="size-4" aria-hidden="true" />
@@ -121,6 +139,9 @@ export default async function ContactPage({ params }: Props) {
                     {t('qrTitle')}
                   </span>
                   <span className="mt-1 block text-sm text-steel-dark">{t('qrHint')}</span>
+                  <span className="mt-2 block text-sm font-semibold">
+                    {whatsapp.name} · {whatsapp.display}
+                  </span>
                 </figcaption>
               </figure>
             </div>
