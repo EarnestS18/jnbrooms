@@ -119,10 +119,37 @@
       "liveRooms": "{count} kamar beroperasi saat ini",
       "years": "Tahun mengelola hotel sejak {year}"
     },
-    "why": {
-      "label": "Mengapa J&B Rooms",
-      "headline": "Dibangun atas kepercayaan. Digerakkan oleh kinerja.",
-      "cta": "Semua alasan bermitra dengan kami"
+    "performance": {
+      "label": "Kinerja",
+      "headline": "Pengalaman yang terukur",
+      "intro": "Skala menunjukkan seberapa lama kami berpengalaman. Angka-angka ini menunjukkan kinerja properti di bawah pengelolaan kami.",
+      "basis": "Periode: {period}. Sumber: {source}.",
+      "tbc": "akan dikonfirmasi",
+      "pending": "Menunggu data terverifikasi",
+      "pendingSr": "Angka menunggu verifikasi"
+    },
+    "caseStudies": {
+      "label": "Studi kasus",
+      "headline": "Diukur dari kinerja",
+      "intro": "Properti pilihan, sebelum dan sesudah dikelola J&B Rooms, pada periode yang disebutkan.",
+      "before": "Sebelum",
+      "after": "Sesudah",
+      "management": "Pengelolaan J&B Rooms",
+      "periodTbc": "Periode akan dikonfirmasi",
+      "caption": "Hasil di {name} sebelum dan sesudah pengelolaan J&B Rooms",
+      "metric": "Metrik",
+      "change": "Perubahan",
+      "points": "{value} %",
+      "changed": "Yang kami ubah",
+      "source": "Sumber: {source}",
+      "sourceTbc": "Sumber akan dikonfirmasi",
+      "placeholder": "Contoh · menunggu data terverifikasi",
+      "disclaimer": "Hasil juga dipengaruhi kondisi pasar pada setiap periode. Kinerja masa lalu tidak menjamin hasil di masa depan."
+    },
+    "how": {
+      "label": "Cara kami bekerja",
+      "headline": "Kerja di balik angka",
+      "cta": "Jelajahi layanan kami"
     },
     "featured": {
       "label": "Portofolio Kami",

@@ -18,13 +18,28 @@ export function Header() {
   const t = useTranslations('nav');
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
+  const [hidden, setHidden] = useState(false);
   const [openKey, setOpenKey] = useState<NavKey | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const triggerRefs = useRef<Partial<Record<NavKey, HTMLButtonElement | null>>>({});
 
+  // Desktop: slide the header away while scrolling down, bring it back on any scroll up.
+  // Small movements are ignored so trackpad jitter doesn't make it flicker.
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
+    let lastY = window.scrollY;
+    const onScroll = () => {
+      const y = window.scrollY;
+      setScrolled(y > 24);
+      if (y <= 120) {
+        setHidden(false);
+        lastY = y;
+        return;
+      }
+      if (Math.abs(y - lastY) < 8) return;
+      setHidden(y > lastY);
+      lastY = y;
+    };
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
@@ -68,10 +83,12 @@ export function Header() {
   return (
     <header
       className={cn(
-        'fixed inset-x-0 top-0 z-50 transition-colors duration-300',
+        'fixed inset-x-0 top-0 z-50 transition-[background-color,color,translate] duration-300 ease-athletic motion-reduce:transition-none',
         solid
           ? 'bg-white text-black'
           : 'on-dark bg-gradient-to-b from-black/60 to-transparent text-white',
+        // Stays put while a mega menu is open or keyboard focus is inside it.
+        hidden && openKey === null && 'lg:-translate-y-full lg:focus-within:translate-y-0',
       )}
       onMouseLeave={scheduleClose}
     >

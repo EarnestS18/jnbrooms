@@ -26,25 +26,28 @@ export function PropertyFilter({ properties }: { properties: Property[] }) {
         aria-label={tp('filterLabel')}
         className="no-scrollbar -mx-4 flex gap-2 overflow-x-auto px-4 sm:mx-0 sm:flex-wrap sm:px-0"
       >
-        {filters.map((f) => {
-          const active = f === filter;
-          return (
-            <button
-              key={f}
-              type="button"
-              aria-pressed={active}
-              onClick={() => setFilter(f)}
-              className={cn(
-                'h-12 shrink-0 border px-5 font-display text-base font-bold tracking-[0.08em] whitespace-nowrap uppercase transition-colors duration-300',
-                active
-                  ? 'border-black bg-black text-white'
-                  : 'border-black/25 bg-white text-black hover:border-black',
-              )}
-            >
-              {t(`regions.${f}`)}
-            </button>
-          );
-        })}
+        {/* Regions with no properties get no tab (it would only show "0 properties"). */}
+        {filters
+          .filter((f) => f === 'all' || properties.some((p) => p.region === f))
+          .map((f) => {
+            const active = f === filter;
+            return (
+              <button
+                key={f}
+                type="button"
+                aria-pressed={active}
+                onClick={() => setFilter(f)}
+                className={cn(
+                  'h-12 shrink-0 border px-5 font-display text-base font-bold tracking-[0.08em] whitespace-nowrap uppercase transition-colors duration-300',
+                  active
+                    ? 'border-black bg-black text-white'
+                    : 'border-black/25 bg-white text-black hover:border-black',
+                )}
+              >
+                {t(`regions.${f}`)}
+              </button>
+            );
+          })}
       </div>
 
       <p aria-live="polite" className="mt-6 text-sm text-black/70">

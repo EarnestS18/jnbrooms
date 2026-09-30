@@ -51,3 +51,9 @@ export const wipeFromRight: Variants = {
   hidden: { clipPath: 'inset(0 0 0 100%)' },
   visible: { clipPath: 'inset(0 0 0 0%)', transition: { duration: 1, ease: EASE } },
 };
+
+/** Horizontal rule that draws in from the left (case study "before -> after" line). */
+export const drawLine: Variants = {
+  hidden: { scaleX: 0 },
+  visible: { scaleX: 1, transition: { duration: 1.2, ease: EASE, delay: 0.2 } },
+};

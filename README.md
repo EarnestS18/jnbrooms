@@ -73,7 +73,8 @@ All content lives in typed data files. Nothing is hardcoded in the page componen
 | Leadership team                   | `data/team.ts`          |
 | Services                          | `data/services.ts`      |
 | Management models + comparison    | `data/models.ts`        |
-| "Why J&B Rooms" cards             | `data/values.ts`        |
+| "Why J&B Rooms" cards (About)     | `data/values.ts`        |
+| Home KPIs + case studies          | `data/performance.ts`   |
 | BNR current project               | `data/projects.ts`      |
 | UI copy (headings, buttons, meta) | `messages/{id,en}.json` |
 
@@ -104,6 +105,41 @@ automatically.
 
 Copy an entry in `data/team.ts` (name, `role`, `bio` in both languages) and add a portrait at
 `public/images/team/<slug>.jpg` (3:4, around 900×1200).
+
+### Performance figures and case studies
+
+The home page is ordered to take a property owner from claim to proof to action:
+
+1. **Hero**: what J&B Rooms does ("Partner With Us" / "Explore Our Properties")
+2. **Stats bar** (red): scale, computed from `data/properties.ts` (10+ properties, 300+ rooms,
+   years since 2019, established 2019)
+3. **Performance** (`#performance`): average occupancy, revenue growth, average guest rating
+4. **Case studies** (`#case-studies`, "Measured by performance"): 1–2 properties shown as
+   Before → J&B Rooms management → After, with a results table (occupancy, guest rating),
+   the change, "What we changed" and the source
+5. **How we deliver**: the four service areas from `data/services.ts`, linking to `/services`
+6. **Featured properties** carousel
+7. **Management models**
+8. **CTA band** (WhatsApp)
+
+**No figure is invented.** Every performance number in `data/performance.ts` is `null` until
+someone fills it in from verified records (PMS exports, OTA dashboards, owner reports). A `null`
+figure renders as a clearly marked placeholder: an outlined `XX%` / `+XX%` / `X.X/5`, an "Awaiting verified data" tag, and "to be confirmed" for its period and source.
+
+To publish real data:
+
+1. Replace `value: null` on a KPI with the number (e.g. `72` for 72%, `4.3` for 4.3/5).
+2. Fill in `kpiBasis.period` and `kpiBasis.source`.
+3. For each case study, set `property` (a slug from `data/properties.ts`), the `before`/`after`
+   numbers and periods, `source`, and a short `summary`. List under `levers` only the changes
+   the records confirm. Describe what was done, not what caused the result.
+4. The change column is calculated for you: points for occupancy, steps for
+   the rating. Verified numbers count up when scrolled into view (the "after" figure counts up from
+   the "before" figure). Once every figure in a case study is filled in, its placeholder tag
+   disappears.
+
+**Before launch:** set `SHOW_UNVERIFIED = false` if any figure is still missing. Placeholders then
+disappear, and a section with nothing verified hides entirely.
 
 ### Replace placeholder photos
 
@@ -236,6 +272,13 @@ from `data/`, and build their sections from `components/sections/`.
   `fillUp`). They use sharp easing `[0.22, 1, 0.36, 1]` and trigger once in view.
 - `prefers-reduced-motion` turns animations into simple fades and disables Lenis, parallax, sticky
   card pinning, count-ups, Ken Burns and the pulse ring.
+- Count-ups (`components/motion/count-up.tsx`) render the final value on the server, reserve
+  its width (no layout shift) and format decimals per locale (`4.3` in EN, `4,3` in ID).
+  Performance placeholders are `aria-hidden`, and screen readers hear "Figure awaiting
+  verification" instead.
+- Desktop header (`components/layout/header.tsx`) slides up out of view while scrolling down
+  and comes back on any scroll up. It always shows near the top of the page, while a mega menu is
+  open and when keyboard focus is inside it. Mobile keeps a fixed header.
 - Lenis smooth scroll runs on desktop pointer devices only (`components/layout/smooth-scroll.tsx`).
   Horizontal scrollers inside the page (e.g. `Carousel`) must use `data-lenis-prevent-horizontal`,
   **not** `data-lenis-prevent-wheel`. The wheel variant hands vertical trackpad scrolling to the
@@ -250,7 +293,8 @@ from `data/`, and build their sections from `components/sections/`.
   disclosure-pattern mega menu (Esc closes it) and a focus-trapped mobile menu.
 - The page loader is skipped entirely under `prefers-reduced-motion` and is `aria-hidden`.
 - Focus outlines are red on light sections and white inside `on-dark` sections (black and red).
-- Lighthouse accessibility (production build): **100** on Home, Services, Portfolio, Partner and
+- Lighthouse accessibility (production build): **100** on Home (EN and ID, rechecked after the
+  performance sections were added), Services, Portfolio, Partner and
   Contact; **96** on About. Known findings, all older than the rebrand:
   - About: the scroll-linked word reveal starts at 18% opacity, which Lighthouse measures before
     the visitor scrolls.
@@ -274,6 +318,9 @@ from `data/`, and build their sections from `components/sections/`.
 
 Search the code for `TODO` to find each one.
 
+- [ ] Verified performance data in `data/performance.ts`: KPIs, their period and source, and 1–2
+      case studies (Pramuka and Utan Kayu are only placeholder picks). Otherwise set
+      `SHOW_UNVERIFIED = false` before launch
 - [ ] Pramuka opened with 9 rooms and is now listed at 43: confirm the expansion story
 - [ ] Stariez by J&B Rooms (2021) is in the timeline but not the portfolio: is it still active?
 - [ ] Total rooms now compute to 393 (shown as "300+", including BNR); live rooms are shown separately
@@ -289,8 +336,10 @@ Search the code for `TODO` to find each one.
   removed. Ende, Senen and Cikarang are now operating. J&B Rooms BNR is the only upcoming project,
   and it is shown **without** projected financial figures.
 - **Areas and regions:** Area names (e.g. Jakarta Timur, Sentul, Bogor) were inferred from the
-  property names. BNR (Bogor) is filtered under _Greater Jakarta / West Java_ and Ende under
-  _Outside Jakarta_.
+  property names. BNR (Bogor) is filtered under _Greater Jakarta / West Java_. Ende is in Tanjung
+  Priok, Jakarta Utara (corrected by the owner) and is filtered under _Greater Jakarta / West Java_.
+  No property is outside Jakarta now, so that filter tab is hidden (a region tab only shows when it
+  has properties).
 - **Launch years:** These come from the timeline. BNR has no confirmed year (`null`).
 - **Stats bar:** Every figure is computed from `data/properties.ts`. Property count and rooms are
   rounded down to the nearest 10 and 100 (currently 10+ and 300+). The fourth stat shows years since 2019.

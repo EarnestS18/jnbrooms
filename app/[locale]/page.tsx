@@ -8,12 +8,13 @@ import { Carousel } from '@/components/sections/carousel';
 import { CtaBand } from '@/components/sections/cta-band';
 import { PropertyCard } from '@/components/sections/property-card';
 import { SectionHeading } from '@/components/sections/section-heading';
-import { ValueCardView } from '@/components/sections/value-card';
+import { CaseStudyCard, KpiBasis, KpiItem } from '@/components/sections/performance';
 import { ArrowLink, CtaLink } from '@/components/ui/cta-link';
 import { Container } from '@/components/ui/container';
 import { managementModels } from '@/data/models';
 import { floorToStep, portfolioStats, properties } from '@/data/properties';
-import { values } from '@/data/values';
+import { visibleCaseStudies, visibleKpis } from '@/data/performance';
+import { services } from '@/data/services';
 import { Link } from '@/i18n/navigation';
 import type { Locale } from '@/i18n/routing';
 import { t as pick } from '@/lib/content';
@@ -28,6 +29,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 const HERO_IMAGE = '/images/hero/home-hero.jpg';
+
+/** Service areas shown under "How we deliver" (the umbrella hotel-management entry is left out). */
+const levers = services.filter((s) => s.id !== 'hotel-management');
 
 export default async function HomePage({ params }: Props) {
   const { locale } = await params;
@@ -123,30 +127,98 @@ export default async function HomePage({ params }: Props) {
         </Container>
       </section>
 
-      {/* 3. WHY J&B ROOMS TEASER */}
+      {/* 3. PERFORMANCE KPIs: figures live in data/performance.ts */}
+      {visibleKpis.length > 0 ? (
+        <section id="performance" className="py-24 lg:py-36">
+          <Container>
+            <div className="grid gap-8 lg:grid-cols-12 lg:items-end">
+              <SectionHeading
+                className="lg:col-span-8"
+                label={t('performance.label')}
+                headline={t('performance.headline')}
+              />
+              <Reveal as="p" className="max-w-md text-lg text-black/70 lg:col-span-4">
+                {t('performance.intro')}
+              </Reveal>
+            </div>
+            <Stagger as="ul" gap={0.12} className="mt-16 grid md:grid-cols-3 lg:mt-24">
+              {visibleKpis.map((kpi) => (
+                <KpiItem key={kpi.metric} kpi={kpi} />
+              ))}
+            </Stagger>
+            <KpiBasis className="mt-4 border-t border-black/15 pt-4" />
+          </Container>
+        </section>
+      ) : null}
+
+      {/* 4. CASE STUDIES: before -> J&B Rooms management -> after */}
+      {visibleCaseStudies.length > 0 ? (
+        <section id="case-studies" className="on-muted bg-grey-light py-24 lg:py-36">
+          <Container>
+            <div className="grid gap-8 lg:grid-cols-12 lg:items-end">
+              <SectionHeading
+                className="lg:col-span-8"
+                label={t('caseStudies.label')}
+                headline={t('caseStudies.headline')}
+              />
+              <Reveal as="p" className="max-w-md text-lg text-black/70 lg:col-span-4">
+                {t('caseStudies.intro')}
+              </Reveal>
+            </div>
+            <div className="mt-16 space-y-8 lg:mt-20 lg:space-y-10">
+              {visibleCaseStudies.map((study) => (
+                <CaseStudyCard key={study.property} study={study} />
+              ))}
+            </div>
+            <Reveal as="p" className="mt-8 max-w-3xl text-sm text-black/70">
+              {t('caseStudies.disclaimer')}
+            </Reveal>
+          </Container>
+        </section>
+      ) : null}
+
+      {/* 5. HOW WE DELIVER: the service areas behind the numbers */}
       <section className="py-24 lg:py-36">
         <Container>
           <div className="flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
-            <SectionHeading label={t('why.label')} headline={t('why.headline')} />
+            <SectionHeading label={t('how.label')} headline={t('how.headline')} />
             <Reveal>
-              <ArrowLink href="/about#why-jb-rooms">{t('why.cta')}</ArrowLink>
+              <ArrowLink href="/services">{t('how.cta')}</ArrowLink>
             </Reveal>
           </div>
-          <Stagger gap={0.12} className="mt-16 grid gap-12 md:grid-cols-3 lg:mt-20 lg:gap-10">
-            {values.slice(0, 3).map((v) => (
-              <StaggerItem key={v.number}>
-                <ValueCardView
-                  number={v.number}
-                  title={pick(v.title, locale)}
-                  body={pick(v.body, locale)}
-                />
+          <Stagger as="ol" gap={0.08} className="mt-16 border-t border-black lg:mt-20">
+            {levers.map((s, i) => (
+              <StaggerItem as="li" key={s.id} className="border-b border-black">
+                <Link
+                  href={`/services#${s.id}`}
+                  className="group grid grid-cols-[2.5rem_1fr_auto] items-center gap-x-4 gap-y-3 py-8 lg:grid-cols-[5rem_minmax(0,1fr)_minmax(0,1fr)_auto] lg:gap-x-10 lg:py-10"
+                >
+                  <span className="font-display text-lg font-bold text-black/70 transition-colors duration-300 group-hover:text-red lg:text-xl">
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
+                  <span className="font-display text-3xl leading-none font-extrabold uppercase transition-colors duration-300 group-hover:text-red lg:text-5xl">
+                    {pick(s.label, locale)}
+                  </span>
+                  <span className="col-start-2 row-start-2 text-black/70 lg:col-start-3 lg:row-start-1 lg:text-lg">
+                    <span className="block font-display font-bold text-black uppercase">
+                      {pick(s.headline, locale)}
+                    </span>
+                    {pick(s.body, locale)}
+                  </span>
+                  <span
+                    aria-hidden="true"
+                    className="col-start-3 row-start-1 font-display text-3xl transition-transform duration-300 group-hover:translate-x-2 lg:col-start-4"
+                  >
+                    →
+                  </span>
+                </Link>
               </StaggerItem>
             ))}
           </Stagger>
         </Container>
       </section>
 
-      {/* 4. FEATURED PROPERTIES */}
+      {/* 6. FEATURED PROPERTIES */}
       <section className="on-muted bg-grey-light py-24 lg:py-32">
         <Container>
           <div className="flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
@@ -169,7 +241,7 @@ export default async function HomePage({ params }: Props) {
         </Container>
       </section>
 
-      {/* 5. MANAGEMENT MODELS TEASER */}
+      {/* 7. MANAGEMENT MODELS TEASER */}
       <section className="py-24 lg:py-36">
         <Container>
           <div className="flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
@@ -211,7 +283,7 @@ export default async function HomePage({ params }: Props) {
         </Container>
       </section>
 
-      {/* 6. CTA BAND */}
+      {/* 8. CTA BAND */}
       <CtaBand
         headline={t('ctaBand.headline')}
         button={t('ctaBand.cta')}

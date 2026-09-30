@@ -119,10 +119,37 @@
       "liveRooms": "{count} rooms live today",
       "years": "Years of hotel management since {year}"
     },
-    "why": {
-      "label": "Why J&B Rooms",
-      "headline": "Built on trust. Run on performance.",
-      "cta": "All reasons to partner with us"
+    "performance": {
+      "label": "Performance",
+      "headline": "Experience you can measure",
+      "intro": "Scale shows how long we have been doing this. These figures show how the properties perform under our management.",
+      "basis": "Period: {period}. Source: {source}.",
+      "tbc": "to be confirmed",
+      "pending": "Awaiting verified data",
+      "pendingSr": "Figure awaiting verification"
+    },
+    "caseStudies": {
+      "label": "Case studies",
+      "headline": "Measured by performance",
+      "intro": "Selected properties, before and after J&B Rooms took over management, over the periods stated.",
+      "before": "Before",
+      "after": "After",
+      "management": "J&B Rooms management",
+      "periodTbc": "Period to be confirmed",
+      "caption": "Results at {name} before and after J&B Rooms management",
+      "metric": "Metric",
+      "change": "Change",
+      "points": "{value} %",
+      "changed": "What we changed",
+      "source": "Source: {source}",
+      "sourceTbc": "Source to be confirmed",
+      "placeholder": "Placeholder · awaiting verified data",
+      "disclaimer": "Results also reflect market conditions over each period. Past performance does not guarantee future results."
+    },
+    "how": {
+      "label": "How we deliver",
+      "headline": "The work behind the numbers",
+      "cta": "Explore our services"
     },
     "featured": {
       "label": "Our Portfolio",
