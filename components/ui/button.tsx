@@ -12,18 +12,16 @@ export const buttonVariants = cva(
   {
     variants: {
       variant: {
-        /** Black button, black offset outline — for light backgrounds. */
-        primary: 'bg-ink text-paper hover:text-mist/70 [--offset-color:var(--color-ink)]',
-        /** White button with black border — secondary action on light backgrounds. */
+        /** Red button, white label — the primary action on black or white backgrounds. */
+        primary: 'bg-red text-white hover:bg-red-dark [--offset-color:var(--color-red)]',
+        /** Transparent with 1px black border — secondary action on light backgrounds. */
         secondary:
-          'border border-ink bg-paper text-ink hover:bg-mist [--offset-color:var(--color-ink)]',
-        /** White button — primary action on dark backgrounds/photos. */
-        inverse: 'bg-paper text-ink hover:text-steel-dark [--offset-color:var(--color-paper)]',
-        /** Transparent with white border — secondary action on dark backgrounds/photos. */
+          'border border-black bg-transparent text-black hover:bg-black/5 [--offset-color:var(--color-black)]',
+        /** White button — the action on a red band, where a red button would disappear. */
+        inverse: 'bg-white text-black hover:text-black/70 [--offset-color:var(--color-white)]',
+        /** Transparent with 1px white border — secondary action on dark backgrounds/photos. */
         'outline-inverse':
-          'border border-paper bg-transparent text-paper hover:bg-paper/10 [--offset-color:var(--color-paper)]',
-        accent:
-          'bg-accent text-accent-foreground hover:opacity-90 [--offset-color:var(--brand-accent)]',
+          'border border-white bg-transparent text-white hover:bg-white/10 [--offset-color:var(--color-white)]',
       },
       size: {
         sm: 'h-10 px-4 text-sm',

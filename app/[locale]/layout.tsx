@@ -8,12 +8,14 @@ import { Analytics } from '@vercel/analytics/next';
 import { Footer } from '@/components/layout/footer';
 import { FloatingWhatsApp } from '@/components/layout/floating-whatsapp';
 import { Header } from '@/components/layout/header';
+import { PageLoader } from '@/components/layout/page-loader';
 import { SmoothScroll } from '@/components/layout/smooth-scroll';
 import { MotionProvider } from '@/components/motion/motion-provider';
 import { Toaster } from '@/components/ui/sonner';
 import { siteName, siteUrl } from '@/config/site';
 import { routing } from '@/i18n/routing';
 import { jsonLdString, organizationJsonLd } from '@/lib/jsonld';
+import { loaderGateScript } from '@/lib/page-loader';
 import '../globals.css';
 
 const display = Barlow_Condensed({
@@ -54,7 +56,7 @@ export async function generateMetadata({
 }
 
 export const viewport: Viewport = {
-  themeColor: '#000000',
+  themeColor: '#0A0A0A',
   width: 'device-width',
   initialScale: 1,
 };
@@ -72,14 +74,16 @@ export default async function LocaleLayout({
   const t = await getTranslations({ locale, namespace: 'meta' });
 
   return (
-    <html lang={locale} className={`${display.variable} ${body.variable}`}>
+    // suppressHydrationWarning: the loader gate script may add .no-loader to <html> before hydration.
+    <html lang={locale} className={`${display.variable} ${body.variable}`} suppressHydrationWarning>
       <head>
         {/* Keep animated content readable without JavaScript. */}
         <noscript>
-          <style>{`[data-reveal]{opacity:1!important;transform:none!important;clip-path:none!important}`}</style>
+          <style>{`[data-reveal]{opacity:1!important;transform:none!important;clip-path:none!important}.page-loader{display:none!important}`}</style>
         </noscript>
+        <script dangerouslySetInnerHTML={{ __html: loaderGateScript }} />
       </head>
-      <body className="min-h-svh bg-paper font-sans text-ink antialiased">
+      <body className="min-h-svh bg-white font-sans text-black antialiased">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -88,6 +92,7 @@ export default async function LocaleLayout({
         />
         <NextIntlClientProvider>
           <MotionProvider>
+            <PageLoader />
             <SmoothScroll />
             <Header />
             <main id="main" tabIndex={-1} className="outline-none">

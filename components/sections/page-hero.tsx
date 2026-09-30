@@ -24,7 +24,7 @@ export function PageHero({
   return (
     <section
       className={cn(
-        'on-dark relative isolate flex min-h-[72svh] items-end overflow-hidden bg-ink text-paper',
+        'on-dark relative isolate flex min-h-[72svh] items-end overflow-hidden bg-black text-white',
         className,
       )}
     >
@@ -39,10 +39,10 @@ export function PageHero({
       />
       <div
         aria-hidden="true"
-        className="absolute inset-0 -z-10 bg-gradient-to-t from-ink/90 via-ink/55 to-ink/40"
+        className="absolute inset-0 -z-10 bg-gradient-to-t from-black/90 via-black/55 to-black/40"
       />
       <Container className="pt-[calc(var(--header-height)+4rem)] pb-14 lg:pb-20">
-        <Reveal onMount as="p" className="eyebrow mb-5 text-paper/85">
+        <Reveal onMount as="p" className="eyebrow mb-5 text-white/85">
           {label}
         </Reveal>
         <MaskText

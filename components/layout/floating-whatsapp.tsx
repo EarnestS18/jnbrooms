@@ -26,7 +26,7 @@ export function FloatingWhatsApp() {
         placement="floating"
         aria-label={t('floatingLabel')}
         title={t('floatingLabel')}
-        className="btn-offset group/btn flex size-14 items-center justify-center bg-ink text-paper ring-1 ring-paper/25 transition-colors [--offset-color:var(--brand-accent)] hover:bg-accent sm:size-16"
+        className="btn-offset group/btn flex size-14 items-center justify-center bg-red text-white ring-1 ring-white/25 transition-colors [--offset-color:var(--color-red)] hover:bg-red-dark sm:size-16"
       >
         <WhatsAppIcon className="size-7" />
       </WhatsAppLink>

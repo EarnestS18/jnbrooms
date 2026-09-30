@@ -30,7 +30,7 @@ export function ServicesSubnav({
 
   return (
     <nav aria-label={label} className="sticky top-[calc(var(--header-height)+2.5rem)]">
-      <ol className="space-y-1 border-l border-ink/15">
+      <ol className="space-y-1 border-l border-black/15">
         {items.map((item, i) => {
           const isActive = active === item.id;
           return (
@@ -41,8 +41,8 @@ export function ServicesSubnav({
                 className={cn(
                   '-ml-px flex items-baseline gap-3 border-l-2 py-2.5 pl-5 font-display text-lg font-bold tracking-[0.06em] uppercase transition-colors duration-300',
                   isActive
-                    ? 'border-ink text-ink'
-                    : 'border-transparent text-steel-dark hover:text-ink',
+                    ? 'border-red text-black'
+                    : 'border-transparent text-black/70 hover:border-red/40 hover:text-black',
                 )}
               >
                 <span className="text-sm tabular-nums">{String(i + 1).padStart(2, '0')}</span>

@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import type { Metadata } from 'next';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
+import { Logo } from '@/components/icons/logo';
 import { ParallaxImage } from '@/components/motion/parallax-image';
 import { Reveal, Stagger, StaggerItem } from '@/components/motion/reveal';
 import { WordReveal } from '@/components/motion/word-reveal';
@@ -48,12 +49,13 @@ export default async function AboutPage({ params }: Props) {
             src="/images/about/story.jpg"
             alt={t('story.imageAlt')}
             sizes="(min-width: 1024px) 50vw, 100vw"
-            className="aspect-[4/5] bg-mist lg:col-span-6"
+            className="aspect-[4/5] bg-grey-light lg:col-span-6"
             {...blurFor('/images/about/story.jpg')}
           />
           <div className="lg:col-span-6 lg:pl-6">
+            <Logo variant="stacked" tone="black" className="mb-12 h-24 lg:h-28" />
             <SectionHeading label={t('story.label')} headline={t('story.headline')} />
-            <Reveal className="mt-8 space-y-5 text-lg text-steel-dark">
+            <Reveal className="mt-8 space-y-5 text-lg text-black/70">
               <p>{t('story.p1')}</p>
               {/* TODO(content): Pramuka opened with 9 rooms and is now listed at 43 — confirm the expansion story. */}
               <p>{t('story.p2')}</p>
@@ -63,10 +65,10 @@ export default async function AboutPage({ params }: Props) {
       </section>
 
       {/* #vision-mission */}
-      <section id="vision-mission" className="on-dark bg-ink py-24 text-paper lg:py-36">
+      <section id="vision-mission" className="on-dark bg-black py-24 text-white lg:py-36">
         <Container>
-          <p className="eyebrow text-paper/75">{t('vision.label')}</p>
-          <h2 className="mt-10 font-display text-2xl font-bold tracking-[0.12em] text-paper/75 uppercase">
+          <p className="eyebrow text-white/75">{t('vision.label')}</p>
+          <h2 className="mt-10 font-display text-2xl font-bold tracking-[0.12em] text-white/75 uppercase">
             {t('vision.visionTitle')}
           </h2>
           <WordReveal
@@ -74,17 +76,17 @@ export default async function AboutPage({ params }: Props) {
             className="mt-4 max-w-6xl font-display text-headline font-extrabold tracking-tight uppercase"
           />
 
-          <h2 className="mt-24 font-display text-2xl font-bold tracking-[0.12em] text-paper/75 uppercase">
+          <h2 className="mt-24 font-display text-2xl font-bold tracking-[0.12em] text-white/75 uppercase">
             {t('vision.missionTitle')}
           </h2>
-          <Stagger as="ol" gap={0.12} className="mt-8 grid gap-px bg-paper/20 md:grid-cols-3">
+          <Stagger as="ol" gap={0.12} className="mt-8 grid gap-px bg-white/20 md:grid-cols-3">
             {pillars.map((key, i) => (
-              <StaggerItem as="li" key={key} className="bg-ink p-8 lg:p-10">
-                <span className="font-display text-xl font-bold text-paper/60">0{i + 1}</span>
+              <StaggerItem as="li" key={key} className="bg-black p-8 lg:p-10">
+                <span className="font-display text-xl font-bold text-white/60">0{i + 1}</span>
                 <h3 className="mt-10 font-display text-4xl leading-none font-extrabold uppercase">
                   {t(`vision.pillars.${key}.title`)}
                 </h3>
-                <p className="mt-4 text-paper/80">{t(`vision.pillars.${key}.body`)}</p>
+                <p className="mt-4 text-white/80">{t(`vision.pillars.${key}.body`)}</p>
               </StaggerItem>
             ))}
           </Stagger>
@@ -104,7 +106,7 @@ export default async function AboutPage({ params }: Props) {
                 const role = pick(member.role, locale);
                 return (
                   <StaggerItem as="article" key={member.slug} className="group">
-                    <div className="relative aspect-[3/4] overflow-hidden bg-mist">
+                    <div className="relative aspect-[3/4] overflow-hidden bg-grey-light">
                       <Image
                         src={member.image}
                         alt={t('leadership.photoAlt', { name: member.name, role })}
@@ -117,8 +119,8 @@ export default async function AboutPage({ params }: Props) {
                     <h3 className="mt-5 font-display text-3xl leading-none font-bold uppercase">
                       {member.name}
                     </h3>
-                    <p className="eyebrow mt-2 text-accent">{role}</p>
-                    <p className="mt-3 max-w-md text-steel-dark">{pick(member.bio, locale)}</p>
+                    <p className="eyebrow mt-2 text-red">{role}</p>
+                    <p className="mt-3 max-w-md text-black/70">{pick(member.bio, locale)}</p>
                   </StaggerItem>
                 );
               })}
@@ -128,7 +130,7 @@ export default async function AboutPage({ params }: Props) {
       </section>
 
       {/* #why-jb-rooms */}
-      <section id="why-jb-rooms" className="bg-mist py-24 lg:py-36">
+      <section id="why-jb-rooms" className="on-muted bg-grey-light py-24 lg:py-36">
         <Container>
           <SectionHeading label={t('why.label')} headline={t('why.headline')} />
           <Stagger

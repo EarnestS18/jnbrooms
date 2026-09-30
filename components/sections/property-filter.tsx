@@ -37,8 +37,8 @@ export function PropertyFilter({ properties }: { properties: Property[] }) {
               className={cn(
                 'h-12 shrink-0 border px-5 font-display text-base font-bold tracking-[0.08em] whitespace-nowrap uppercase transition-colors duration-300',
                 active
-                  ? 'border-ink bg-ink text-paper'
-                  : 'border-ink/25 bg-paper text-ink hover:border-ink',
+                  ? 'border-black bg-black text-white'
+                  : 'border-black/25 bg-white text-black hover:border-black',
               )}
             >
               {t(`regions.${f}`)}
@@ -47,7 +47,7 @@ export function PropertyFilter({ properties }: { properties: Property[] }) {
         })}
       </div>
 
-      <p aria-live="polite" className="mt-6 text-sm text-steel-dark">
+      <p aria-live="polite" className="mt-6 text-sm text-black/70">
         {tp('results', { count: visible.length })}
       </p>
 
@@ -73,7 +73,7 @@ export function PropertyFilter({ properties }: { properties: Property[] }) {
           ))}
         </AnimatePresence>
       </motion.ul>
-      {visible.length === 0 ? <p className="mt-6 text-steel-dark">{tp('empty')}</p> : null}
+      {visible.length === 0 ? <p className="mt-6 text-black/70">{tp('empty')}</p> : null}
     </div>
   );
 }

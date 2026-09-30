@@ -20,7 +20,7 @@ export function SectionHeading({
 }) {
   return (
     <div className={cn('max-w-5xl', className)}>
-      <Reveal as="p" className="eyebrow mb-4 opacity-80">
+      <Reveal as="p" className="eyebrow section-label mb-4">
         {label}
       </Reveal>
       <MaskText

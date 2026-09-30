@@ -19,7 +19,7 @@ export function OutlinedNumber({ value, className }: { value: string; className?
       <span className="text-outline">{value}</span>
       <motion.span
         data-reveal=""
-        className="absolute inset-0 text-accent"
+        className="absolute inset-0 text-red"
         variants={reduce ? fade : fillUp}
       >
         {value}

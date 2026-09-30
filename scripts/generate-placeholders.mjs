@@ -88,7 +88,7 @@ function building(file, w, h) {
     <rect x="${nx}" y="${h * 0.45}" width="${w - nx}" height="${h * 0.55}" fill="#15171a"/>
     <rect x="0" y="${h * 0.55}" width="${bx - w * 0.02}" height="${h * 0.45}" fill="#131517"/>
     <rect x="${bx}" y="${by}" width="${bw}" height="${bh}" fill="url(#bld)"/>
-    <rect x="${bx}" y="${by}" width="${bw}" height="${h * 0.012}" fill="#0a5c52"/>
+    <rect x="${bx}" y="${by}" width="${bw}" height="${h * 0.012}" fill="#E4002B"/>
     ${windows}
     <rect x="0" y="${h * 0.93}" width="${w}" height="${h * 0.07}" fill="#0b0c0d"/>
     ${label(file, w, h)}
@@ -114,7 +114,7 @@ function interior(file, w, h) {
     <rect x="${w * 0.3}" y="${h * 0.5}" width="${w * 0.4}" height="${h * 0.06}" fill="#d9d9d9"/>
     <rect x="${w * 0.33}" y="${h * 0.46}" width="${w * 0.1}" height="${h * 0.05}" fill="#fff"/>
     <rect x="${w * 0.57}" y="${h * 0.46}" width="${w * 0.1}" height="${h * 0.05}" fill="#fff"/>
-    <rect x="${w * 0.47}" y="${h * 0.22}" width="${w * 0.06}" height="${h * 0.2}" fill="#0a5c52" fill-opacity="0.8"/>
+    <rect x="${w * 0.47}" y="${h * 0.22}" width="${w * 0.06}" height="${h * 0.2}" fill="#E4002B" fill-opacity="0.8"/>
     ${label(file, w, h)}
   </svg>`;
 }

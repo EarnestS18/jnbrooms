@@ -69,7 +69,7 @@ export default async function PortfolioPage({ params }: Props) {
       </section>
 
       {/* #timeline */}
-      <section id="timeline" className="overflow-hidden bg-mist py-24 lg:py-32">
+      <section id="timeline" className="on-muted overflow-hidden bg-grey-light py-24 lg:py-32">
         <Container>
           <SectionHeading label={t('timeline.label')} headline={t('timeline.headline')} />
           <div className="mt-14">
@@ -85,7 +85,7 @@ export default async function PortfolioPage({ params }: Props) {
 
           {/* Featured current project: J&B Rooms BNR */}
           <article className="mt-14 grid gap-0 lg:grid-cols-2" aria-labelledby="bnr-title">
-            <WipeReveal className="relative aspect-[4/3] overflow-hidden bg-mist lg:aspect-auto lg:min-h-[36rem]">
+            <WipeReveal className="relative aspect-[4/3] overflow-hidden bg-grey-light lg:aspect-auto lg:min-h-[36rem]">
               <Image
                 src={bnrProject.image}
                 alt={`${bnrProject.name}, ${bnrProject.location}`}
@@ -94,34 +94,34 @@ export default async function PortfolioPage({ params }: Props) {
                 className="object-cover"
                 {...blurFor(bnrProject.image)}
               />
-              <Badge variant="accent" className="absolute top-4 left-4">
+              <Badge variant="red" className="absolute top-4 left-4">
                 {t('upcoming.featureLabel')}
               </Badge>
             </WipeReveal>
 
-            <div className="on-dark bg-ink p-6 text-paper sm:p-10 lg:p-14">
+            <div className="on-dark bg-black p-6 text-white sm:p-10 lg:p-14">
               <Reveal>
-                <p className="eyebrow text-paper/75">{bnrProject.location}</p>
+                <p className="eyebrow text-white/75">{bnrProject.location}</p>
                 <h3
                   id="bnr-title"
                   className="mt-3 font-display text-5xl leading-none font-extrabold uppercase lg:text-6xl"
                 >
                   {bnrProject.name}
                 </h3>
-                <p className="mt-5 max-w-xl text-paper/80">
+                <p className="mt-5 max-w-xl text-white/80">
                   {pick(bnrProject.description, locale)}
                 </p>
               </Reveal>
 
-              <Reveal delay={0.1} className="mt-10 border-t border-paper/30 pt-6">
+              <Reveal delay={0.1} className="mt-10 border-t border-white/30 pt-6">
                 <p className="font-display text-5xl leading-none font-extrabold">
                   {bnrProject.rooms}
                 </p>
-                <p className="eyebrow mt-2 text-paper/75">{tc('roomsLabel')}</p>
+                <p className="eyebrow mt-2 text-white/75">{tc('roomsLabel')}</p>
               </Reveal>
 
               <Reveal delay={0.2} className="mt-10">
-                <WhatsAppButton type="project-bnr" placement="bnr-feature" variant="inverse">
+                <WhatsAppButton type="project-bnr" placement="bnr-feature" variant="primary">
                   {t('upcoming.cta')}
                 </WhatsAppButton>
               </Reveal>

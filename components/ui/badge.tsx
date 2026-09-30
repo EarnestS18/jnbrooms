@@ -6,13 +6,13 @@ const badgeVariants = cva(
   {
     variants: {
       variant: {
-        accent: 'bg-accent text-accent-foreground',
-        ink: 'bg-ink text-paper',
-        paper: 'bg-paper text-ink',
+        red: 'bg-red text-white',
+        black: 'bg-black text-white',
+        white: 'bg-white text-black',
         outline: 'border border-current',
       },
     },
-    defaultVariants: { variant: 'ink' },
+    defaultVariants: { variant: 'black' },
   },
 );
 

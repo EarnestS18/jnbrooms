@@ -1,13 +1,24 @@
 @import 'tailwindcss';
 
 /* ------------------------------------------------------------------
-   DESIGN TOKENS
-   Monochrome base + ONE accent. Change --brand-accent once J&B Rooms'
-   brand colour is confirmed. TODO(brand): confirm brand colour.
+   DESIGN TOKENS — "Bold Red"
+   ~60% black, ~30% white, ~10% red. Red is an accent only: CTAs, stat
+   numbers, section labels, active/hover states. Tailwind's default
+   palette is cleared so only these colours exist as utilities
+   (bg-black, text-red, border-grey-light, …). @theme emits each token
+   as a CSS variable on :root (var(--color-red) etc.).
 ------------------------------------------------------------------- */
+@theme {
+  --color-*: initial;
+  --color-black: #0a0a0a; /* header, hero, dark sections, footer, headlines */
+  --color-white: #ffffff; /* light sections, text on black/red */
+  --color-red: #e4002b; /* accent: CTAs, stat numbers, labels, highlights */
+  --color-red-dark: #b8001f; /* red button hover/active */
+  --color-grey: #bdbdbd; /* secondary text on black */
+  --color-grey-light: #f2f2f2; /* subtle alternate light section background */
+}
+
 :root {
-  --brand-accent: #0a5c52; /* deep teal — placeholder accent */
-  --brand-accent-foreground: #ffffff;
   --header-height: 4rem;
 }
 
@@ -18,14 +29,6 @@
 }
 
 @theme inline {
-  --color-ink: #000000;
-  --color-paper: #ffffff;
-  --color-mist: #eceff1;
-  --color-steel: #767677;
-  --color-steel-dark: #545455;
-  --color-accent: var(--brand-accent);
-  --color-accent-foreground: var(--brand-accent-foreground);
-
   --font-display: var(--font-barlow-condensed), 'Arial Narrow', Arial, sans-serif;
   --font-sans: var(--font-barlow), system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
 
@@ -87,8 +90,8 @@
   }
 
   body {
-    background: var(--color-paper);
-    color: var(--color-ink);
+    background: var(--color-white);
+    color: var(--color-black);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -100,18 +103,18 @@
   }
 
   :focus-visible {
-    outline: 3px solid var(--brand-accent);
+    outline: 3px solid var(--color-red);
     outline-offset: 3px;
   }
 
   .on-dark :focus-visible,
   .on-dark:focus-visible {
-    outline-color: #ffffff;
+    outline-color: var(--color-white);
   }
 
   ::selection {
-    background: var(--color-ink);
-    color: var(--color-paper);
+    background: var(--color-black);
+    color: var(--color-white);
   }
 }
 
@@ -138,10 +141,22 @@
     transform: translate(0, 0);
   }
 
-  /* Outlined display type. Stroke colour follows --outline-color (defaults to ink). */
+  /* Section label ("WHY J&B ROOMS"): red on white. Small red text fails contrast on
+     grey-light and must not sit on black, so those sections swap the colour. */
+  .section-label {
+    color: var(--color-red);
+  }
+  .on-muted .section-label {
+    color: var(--color-red-dark);
+  }
+  .on-dark .section-label {
+    color: var(--color-grey);
+  }
+
+  /* Outlined display type. Stroke colour follows --outline-color (defaults to black). */
   .text-outline {
     color: transparent;
-    -webkit-text-stroke: 1.5px var(--outline-color, var(--color-ink));
+    -webkit-text-stroke: 1.5px var(--outline-color, var(--color-black));
   }
 
   .no-scrollbar {
@@ -157,6 +172,42 @@
     font-size: 0.875rem;
     letter-spacing: 0.16em;
     text-transform: uppercase;
+  }
+}
+
+/* Page loader: the monogram's stripes draw in one after another (~1.2s), then the
+   screen fades out. Pure CSS so it runs before hydration. An inline script in the
+   layout adds .no-loader to <html> once per session or under reduced motion. */
+.page-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-black);
+  animation: loader-out 0.4s ease 1.3s forwards;
+}
+.page-loader path {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: loader-draw 0.45s var(--ease-athletic) forwards;
+  animation-delay: calc(var(--stripe) * 0.25s);
+}
+.no-loader .page-loader {
+  display: none;
+}
+
+@keyframes loader-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes loader-out {
+  to {
+    opacity: 0;
+    visibility: hidden;
   }
 }
 
@@ -182,5 +233,9 @@ html.lenis body {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     scroll-behavior: auto !important;
+  }
+
+  .page-loader {
+    display: none;
   }
 }

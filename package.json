@@ -13,7 +13,8 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "images:placeholders": "node scripts/generate-placeholders.mjs && node scripts/generate-blur-data.mjs",
-    "images:blur": "node scripts/generate-blur-data.mjs"
+    "images:blur": "node scripts/generate-blur-data.mjs",
+    "brand:assets": "node scripts/generate-brand-assets.mjs"
   },
   "engines": {
     "node": ">=20.9.0"

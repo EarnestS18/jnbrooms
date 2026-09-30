@@ -43,7 +43,7 @@ export default async function HomePage({ params }: Props) {
   return (
     <>
       {/* 1. HERO */}
-      <section className="on-dark relative isolate flex min-h-svh items-end overflow-hidden bg-ink text-paper">
+      <section className="on-dark relative isolate flex min-h-svh items-end overflow-hidden bg-black text-white">
         <Image
           src={HERO_IMAGE}
           alt={t('hero.imageAlt')}
@@ -55,10 +55,10 @@ export default async function HomePage({ params }: Props) {
         />
         <div
           aria-hidden="true"
-          className="absolute inset-0 -z-10 bg-gradient-to-t from-ink/90 via-ink/50 to-ink/45"
+          className="absolute inset-0 -z-10 bg-gradient-to-t from-black/90 via-black/50 to-black/45"
         />
         <Container className="pt-[calc(var(--header-height)+3rem)] pb-24 lg:pb-28">
-          <Reveal onMount as="p" className="eyebrow mb-6 text-paper/85">
+          <Reveal onMount as="p" className="eyebrow mb-6 text-white/85">
             {t('hero.label')}
           </Reveal>
           <MaskText
@@ -72,12 +72,12 @@ export default async function HomePage({ params }: Props) {
             onMount
             delay={0.9}
             as="p"
-            className="mt-8 max-w-2xl text-lg text-paper/85 lg:text-xl"
+            className="mt-8 max-w-2xl text-lg text-white/85 lg:text-xl"
           >
             {t('hero.subtext')}
           </Reveal>
           <Reveal onMount delay={1.05} className="mt-10 flex flex-col gap-5 sm:flex-row sm:gap-6">
-            <CtaLink href="/partner" variant="inverse" size="lg">
+            <CtaLink href="/partner" variant="primary" size="lg">
               {t('hero.primaryCta')}
             </CtaLink>
             <CtaLink href="/portfolio" variant="outline-inverse" size="lg">
@@ -88,7 +88,7 @@ export default async function HomePage({ params }: Props) {
         <a
           href="#stats"
           aria-label={tc('scrollDown')}
-          className="absolute bottom-6 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 text-paper/80 hover:text-paper md:flex"
+          className="absolute bottom-6 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 text-white/80 hover:text-white md:flex"
         >
           <span className="eyebrow text-xs">{tc('scrollDown')}</span>
           <span
@@ -99,7 +99,7 @@ export default async function HomePage({ params }: Props) {
       </section>
 
       {/* 2. STATS BAR */}
-      <section id="stats" aria-label={t('stats.label')} className="border-b border-ink/10 bg-paper">
+      <section id="stats" aria-label={t('stats.label')} className="on-dark bg-red text-white">
         <Container>
           <Stagger as="ul" className="grid grid-cols-2 lg:grid-cols-4">
             <StatItem
@@ -147,7 +147,7 @@ export default async function HomePage({ params }: Props) {
       </section>
 
       {/* 4. FEATURED PROPERTIES */}
-      <section className="bg-mist py-24 lg:py-32">
+      <section className="on-muted bg-grey-light py-24 lg:py-32">
         <Container>
           <div className="flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
             <SectionHeading label={t('featured.label')} headline={t('featured.headline')} />
@@ -178,16 +178,16 @@ export default async function HomePage({ params }: Props) {
               <ArrowLink href="/partner">{t('models.cta')}</ArrowLink>
             </Reveal>
           </div>
-          <Stagger as="ol" gap={0.1} className="mt-16 grid border-t border-ink md:grid-cols-3">
+          <Stagger as="ol" gap={0.1} className="mt-16 grid border-t border-black md:grid-cols-3">
             {managementModels.map((m) => (
               <StaggerItem
                 as="li"
                 key={m.id}
-                className="border-b border-ink md:border-r md:last:border-r-0"
+                className="border-b border-black md:border-r md:last:border-r-0"
               >
                 <Link
                   href={`/partner#${m.id}`}
-                  className="group flex h-full flex-col p-6 transition-colors duration-300 hover:bg-ink hover:text-paper lg:p-10"
+                  className="group flex h-full flex-col p-6 transition-colors duration-300 hover:bg-black hover:text-white lg:p-10"
                 >
                   <span className="font-display text-8xl leading-none font-extrabold lg:text-[9rem]">
                     {m.number}
@@ -195,7 +195,7 @@ export default async function HomePage({ params }: Props) {
                   <span className="mt-10 font-display text-3xl leading-none font-bold uppercase lg:text-4xl">
                     {pick(m.name, locale)}
                   </span>
-                  <span className="mt-4 text-steel-dark transition-colors group-hover:text-paper/80">
+                  <span className="mt-4 text-black/70 transition-colors group-hover:text-white/80">
                     {pick(m.summary, locale)}
                   </span>
                   <span
@@ -212,7 +212,12 @@ export default async function HomePage({ params }: Props) {
       </section>
 
       {/* 6. CTA BAND */}
-      <CtaBand headline={t('ctaBand.headline')} button={t('ctaBand.cta')} type="partnership" />
+      <CtaBand
+        headline={t('ctaBand.headline')}
+        button={t('ctaBand.cta')}
+        type="partnership"
+        tone="black"
+      />
     </>
   );
 }
@@ -229,11 +234,11 @@ function StatItem({
   return (
     <StaggerItem
       as="li"
-      className="border-ink/10 py-10 odd:border-r even:pl-6 lg:border-r lg:px-8 lg:py-14 lg:first:pl-0 lg:last:border-r-0 lg:even:pl-8 [&:nth-child(-n+2)]:border-b lg:[&:nth-child(-n+2)]:border-b-0"
+      className="border-white/25 py-10 odd:border-r even:pl-6 lg:border-r lg:px-8 lg:py-14 lg:first:pl-0 lg:last:border-r-0 lg:even:pl-8 [&:nth-child(-n+2)]:border-b lg:[&:nth-child(-n+2)]:border-b-0"
     >
       <p className="font-display text-6xl leading-none font-extrabold lg:text-8xl">{value}</p>
-      <p className="eyebrow mt-3 text-steel-dark">{label}</p>
-      {note ? <p className="mt-1 text-sm text-steel-dark">{note}</p> : null}
+      <p className="eyebrow mt-3">{label}</p>
+      {note ? <p className="mt-1 text-sm">{note}</p> : null}
     </StaggerItem>
   );
 }
