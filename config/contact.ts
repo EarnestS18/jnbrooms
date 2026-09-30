@@ -98,8 +98,8 @@ export const contact = {
   whatsapp,
   // TODO(content): confirm WhatsApp operating hours (copy lives in messages: contact.hours.value).
   // TODO(content): real email, phone and social URLs.
-  email: 'hello@jbrooms.co.id',
-  phone: { href: 'tel:+62210000000', display: '+62 21 0000 000' },
+  email: 'otajnb@gmail.com',
+  phone: { href: 'tel:+628159495520', display: '+62 815 949 5520' },
   social: {
     instagram: 'https://www.instagram.com/jbrooms',
     linkedin: 'https://www.linkedin.com/company/jbrooms',
