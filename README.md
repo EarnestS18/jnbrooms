@@ -236,6 +236,14 @@ from `data/`, and build their sections from `components/sections/`.
   `fillUp`). They use sharp easing `[0.22, 1, 0.36, 1]` and trigger once in view.
 - `prefers-reduced-motion` turns animations into simple fades and disables Lenis, parallax, sticky
   card pinning, count-ups, Ken Burns and the pulse ring.
+- Lenis smooth scroll runs on desktop pointer devices only (`components/layout/smooth-scroll.tsx`).
+  Horizontal scrollers inside the page (e.g. `Carousel`) must use `data-lenis-prevent-horizontal`,
+  **not** `data-lenis-prevent-wheel`. The wheel variant hands vertical trackpad scrolling to the
+  browser while the pointer is over the element, which makes the page stutter and jump.
+- The development timeline (`components/sections/timeline.tsx`) is vertical, with a line that
+  snakes like an "S" between years (alternating sides on desktop). The curve is measured from the
+  markers' positions, so it follows the CSS layout at any width, and the red line draws along it as
+  the visitor scrolls.
 - Animated content stays readable without JavaScript (a `<noscript>` style overrides the initial
   animation states).
 - Includes a skip link, visible focus states, labelled icon-only buttons, an accessible

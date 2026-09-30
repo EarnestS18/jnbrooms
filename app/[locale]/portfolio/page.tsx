@@ -73,7 +73,7 @@ export default async function PortfolioPage({ params }: Props) {
         <Container>
           <SectionHeading label={t('timeline.label')} headline={t('timeline.headline')} />
           <div className="mt-14">
-            <Timeline entries={timeline} hint={t('timeline.hint')} />
+            <Timeline entries={timeline} />
           </div>
         </Container>
       </section>

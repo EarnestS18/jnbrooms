@@ -82,7 +82,7 @@ export function Carousel({
       </div>
       <ul
         ref={track}
-        data-lenis-prevent-wheel=""
+        data-lenis-prevent-horizontal=""
         className="no-scrollbar -mx-4 flex snap-x snap-mandatory scroll-px-4 gap-4 overflow-x-auto px-4 pb-2 sm:-mx-6 sm:scroll-px-6 sm:px-6 lg:-mx-10 lg:scroll-px-10 lg:gap-6 lg:px-10"
       >
         {children.map((child, i) => (

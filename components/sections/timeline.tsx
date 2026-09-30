@@ -1,143 +1,137 @@
 'use client';
 
-import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
-import { useRef } from 'react';
-import { EASE, fade, fadeUp, stagger } from '@/lib/motion';
+import { motion, useReducedMotion, useScroll } from 'framer-motion';
+import { useEffect, useRef, useState } from 'react';
+import { EASE, fade, fadeUp } from '@/lib/motion';
+import { cn } from '@/lib/utils';
 import type { TimelineEntry } from '@/types/content';
 
+type Point = { x: number; y: number };
+
 /**
- * Development timeline: horizontal (drag / scroll) on desktop, vertical on mobile.
- * The progress line draws as the visitor scrolls through the section.
+ * S-curve through the markers: vertical tangents at every marker, so each hop between
+ * two years bends like an "S". Runs from the top edge to the bottom edge of the list.
  */
-export function Timeline({ entries, hint }: { entries: TimelineEntry[]; hint: string }) {
-  const section = useRef<HTMLDivElement>(null);
-  const track = useRef<HTMLDivElement>(null);
+function sCurve(points: Point[], height: number) {
+  const first = points[0];
+  const last = points[points.length - 1];
+  let d = `M ${first.x} 0 L ${first.x} ${first.y}`;
+  for (let i = 1; i < points.length; i++) {
+    const a = points[i - 1];
+    const b = points[i];
+    const bend = (b.y - a.y) / 2;
+    d += ` C ${a.x} ${a.y + bend} ${b.x} ${b.y - bend} ${b.x} ${b.y}`;
+  }
+  return `${d} L ${last.x} ${height}`;
+}
+
+/**
+ * Development timeline: a vertical line that snakes like an "S" between the years, which
+ * alternate sides on desktop. The red line draws along the curve as the visitor scrolls.
+ * The markers are laid out with CSS; the curve is measured from them, so it follows the
+ * layout at every screen size.
+ */
+export function Timeline({ entries }: { entries: TimelineEntry[] }) {
+  const list = useRef<HTMLOListElement>(null);
+  const markers = useRef<(HTMLSpanElement | null)[]>([]);
+  const [curve, setCurve] = useState<{ d: string; width: number; height: number } | null>(null);
   const reduce = useReducedMotion();
-  const { scrollYProgress } = useScroll({ target: section, offset: ['start 0.85', 'end 0.6'] });
-  const progress = useTransform(scrollYProgress, [0, 1], [0, 1]);
+  const { scrollYProgress } = useScroll({ target: list, offset: ['start 0.75', 'end 0.75'] });
 
-  // Mouse drag-to-scroll for the horizontal track.
-  const drag = useRef<{ x: number; left: number } | null>(null);
-  const onPointerDown = (e: React.PointerEvent) => {
-    if (e.pointerType !== 'mouse' || !track.current) return;
-    drag.current = { x: e.clientX, left: track.current.scrollLeft };
-  };
-  const onPointerMove = (e: React.PointerEvent) => {
-    if (!drag.current || !track.current) return;
-    track.current.scrollLeft = drag.current.left - (e.clientX - drag.current.x);
-  };
-  const endDrag = () => {
-    drag.current = null;
-  };
+  useEffect(() => {
+    const el = list.current;
+    if (!el) return;
+    const measure = () => {
+      const box = el.getBoundingClientRect();
+      const points = markers.current
+        .filter((m): m is HTMLSpanElement => m !== null)
+        .map((m) => {
+          const r = m.getBoundingClientRect();
+          return { x: r.left + r.width / 2 - box.left, y: r.top + r.height / 2 - box.top };
+        });
+      if (points.length === 0) return;
+      setCurve({ d: sCurve(points, box.height), width: box.width, height: box.height });
+    };
+    measure();
+    const observer = new ResizeObserver(measure);
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [entries.length]);
 
+  const item = reduce ? fade : fadeUp;
   const marker = reduce
     ? fade
     : {
         hidden: { scale: 0 },
         visible: { scale: 1, transition: { duration: 0.4, ease: EASE } },
       };
-  const item = reduce ? fade : fadeUp;
 
   return (
-    <div ref={section}>
-      {/* Desktop: horizontal */}
-      <div className="hidden lg:block">
-        <p className="eyebrow mb-6 text-black/70">{hint} →</p>
-        <div
-          ref={track}
-          tabIndex={0}
-          aria-label={hint}
-          role="region"
-          data-lenis-prevent-wheel=""
-          className="no-scrollbar cursor-grab overflow-x-auto pb-4 select-none active:cursor-grabbing"
-          onPointerDown={onPointerDown}
-          onPointerMove={onPointerMove}
-          onPointerUp={endDrag}
-          onPointerLeave={endDrag}
+    <ol ref={list} className="relative">
+      {curve ? (
+        <svg
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 overflow-visible"
+          width={curve.width}
+          height={curve.height}
+          viewBox={`0 0 ${curve.width} ${curve.height}`}
+          fill="none"
         >
-          <motion.ol
-            className="relative flex w-max min-w-full"
+          <path d={curve.d} className="stroke-black/15" strokeWidth={1} />
+          <motion.path
+            d={curve.d}
+            className="stroke-red"
+            strokeWidth={3}
+            style={{ pathLength: reduce ? 1 : scrollYProgress }}
+          />
+        </svg>
+      ) : null}
+
+      {entries.map((entry, i) => {
+        const left = i % 2 === 0;
+        return (
+          <motion.li
+            key={entry.year}
+            className="relative py-10 lg:py-12"
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-            variants={stagger(0.12)}
+            viewport={{ once: true, amount: 0.5 }}
           >
-            <span
-              aria-hidden="true"
-              className="absolute top-[5.5rem] right-0 left-0 h-px bg-black/15"
-            />
+            {/* Mobile: a gentle S near the left edge. Desktop: swings between 42% and 58%. */}
             <motion.span
-              aria-hidden="true"
-              data-reveal=""
-              className="absolute top-[5.5rem] right-0 left-0 h-[3px] origin-left -translate-y-px bg-red"
-              style={reduce ? undefined : { scaleX: progress }}
-            />
-            {entries.map((entry) => (
-              <li key={entry.year} className="relative w-[20rem] shrink-0 pr-10 xl:w-[22rem]">
-                <motion.span
-                  data-reveal=""
-                  variants={item}
-                  className="block font-display text-7xl leading-none font-extrabold"
-                >
-                  {entry.year}
-                </motion.span>
-                <motion.span
-                  aria-hidden="true"
-                  data-reveal=""
-                  variants={marker}
-                  className="absolute top-[5.5rem] left-0 size-4 -translate-y-1/2 bg-black"
-                />
-                <motion.ul data-reveal="" variants={item} className="mt-14 space-y-2">
-                  {entry.items.map((name) => (
-                    <li key={name} className="font-display text-xl font-bold uppercase">
-                      {name}
-                    </li>
-                  ))}
-                </motion.ul>
-              </li>
-            ))}
-          </motion.ol>
-        </div>
-      </div>
-
-      {/* Mobile: vertical */}
-      <motion.ol
-        className="relative space-y-12 pl-10 lg:hidden"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.1 }}
-        variants={stagger(0.1)}
-      >
-        <span aria-hidden="true" className="absolute top-2 bottom-2 left-[7px] w-px bg-black/15" />
-        <motion.span
-          aria-hidden="true"
-          data-reveal=""
-          className="absolute top-2 bottom-2 left-[6px] w-[3px] origin-top bg-red"
-          style={reduce ? undefined : { scaleY: progress }}
-        />
-        {entries.map((entry) => (
-          <li key={entry.year} className="relative">
-            <motion.span
+              ref={(node) => {
+                markers.current[i] = node;
+              }}
               aria-hidden="true"
               data-reveal=""
               variants={marker}
-              className="absolute top-3 -left-10 size-4 bg-black"
+              className={cn(
+                'absolute top-16 z-10 size-4 -translate-x-1/2 -translate-y-1/2 bg-black lg:top-[4.75rem]',
+                left ? 'left-3 lg:left-[42%]' : 'left-11 lg:left-[58%]',
+              )}
             />
-            <motion.div data-reveal="" variants={item}>
-              <span className="block font-display text-5xl leading-none font-extrabold">
+            <motion.div
+              data-reveal=""
+              variants={item}
+              className={cn(
+                'pl-20 lg:pl-0',
+                left ? 'lg:w-[calc(42%-2.5rem)] lg:text-right' : 'lg:ml-[calc(58%+2.5rem)]',
+              )}
+            >
+              <span className="block font-display text-5xl leading-none font-extrabold lg:text-7xl">
                 {entry.year}
               </span>
-              <ul className="mt-3 space-y-1">
+              <ul className="mt-3 space-y-1 lg:mt-5 lg:space-y-2">
                 {entry.items.map((name) => (
-                  <li key={name} className="font-display text-lg font-bold uppercase">
+                  <li key={name} className="font-display text-lg font-bold uppercase lg:text-xl">
                     {name}
                   </li>
                 ))}
               </ul>
             </motion.div>
-          </li>
-        ))}
-      </motion.ol>
-    </div>
+          </motion.li>
+        );
+      })}
+    </ol>
   );
 }
